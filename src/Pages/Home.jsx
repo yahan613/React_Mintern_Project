@@ -1,12 +1,17 @@
 import React from "react";
-import "../Styles/Home.css"
-
+import MainIntro from "@/Component/MainIntro";
+import IntroTab from "@/Component/IntroTab";
+import Footer from "@/Component/Footer";
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <h1 className="home-title">Welcome to Home Page</h1>
-      <p className="home-text">This is the home page of our website.</p>
+    <div
+      className="bg-[var(--primary)] w-screen h-screen m-0 p-0 mt-0 flex flex-col items-center overflow-x-hidden pt-10"
+    >
+      <MainIntro />
+      <IntroTab />
+      <Footer />
+      
     </div>
   );
 };
