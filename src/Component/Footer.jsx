@@ -3,7 +3,7 @@ const Footer = () => {
     return (
         <div
             style={{ fontFamily: 'Montserrat, sans-serif' }}
-            className="bg-var(--secondary) w-full mt-20">
+            className="bg-var(--secondary) w-full ">
             <footer className="footer bg-[var(--secondary)] text-white py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 lg:px-16">
                 {/* 描述區塊 */}
                 <div className="flex flex-col items-center sm:items-center space-y-4">

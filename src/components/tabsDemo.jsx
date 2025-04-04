@@ -18,7 +18,7 @@ import {
 
 export function TabsDemo() {
     return (
-        <Tabs defaultValue="band" className="w-[70%] items-center">
+        <Tabs defaultValue="band" className="w-[70%] items-center mb-20">
             <TabsList className="grid w-full grid-cols-2 bg-[var(--secondary)] p-1 mb-4">
                 <TabsTrigger value="band" className="data-[state=active]:bg-[var(--warning)] data-[state=active]:text-[var(--secondary)] text-[var(--tertiary)] font-bold border-none">
                     BAND
@@ -49,7 +49,7 @@ export function TabsDemo() {
                 </div>
             </TabsContent>
 
-            <TabsContent value="app" className="w-full mt-8">
+            <TabsContent value="app" className="w-full mt-8 ">
                 <div className="flex justify-between pl-8 pr-8 gap-20">
                     <div className="flex flex-col text-start p-4">
                         <h1 className="text-3xl pb-8 text-[var(--accent)]">Grow Your Muscle Baby, Track Every Workout!</h1>
