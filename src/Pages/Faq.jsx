@@ -53,6 +53,7 @@ const Faq = () => {
                     <h3 className="text-3xl font-semibold text-[#ECD086] text-left pl-4">
                       Q{faq.id}
                     </h3>
+                    <h4 className="font-semibold text-white mb-3">{faq.question}</h4>
                     <span className={`transform transition-transform duration-300 ${openId === faq.id ? 'rotate-90' : ''}`}>
                       <svg 
                         width="24" 
@@ -72,7 +73,7 @@ const Faq = () => {
                   {openId === faq.id && (
                     <div className="px-6 pb-6 bg-[#78624D] border-t border-[#E9A751]/20">
                       <div className="text-white mt-4 mb-6">
-                        <h4 className="font-semibold mb-3">{faq.question}</h4>
+                        
                         <p className="text-white/80 leading-relaxed">
                           {faq.answer}
                         </p>
