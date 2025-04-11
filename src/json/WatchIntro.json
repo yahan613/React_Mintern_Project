@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "question": "Precise Motion Detection",
+      "answer": "Accurately counts reps and detects motion with built-in sensors."
+    },
+    {
+      "id": 2,
+      "question": "Lightweight & Long Battery Life",
+      "answer": "Comfortable to wear with multi-day battery life."
+    },
+    {
+      "id": 3,
+      "question": "Real-Time BLE Data Sync",
+      "answer": "Instant Bluetooth Low Energy (BLE) connection to the app."
+    },
+    {
+      "id": 4,
+      "question": "Sweat-Resistant & Durable Design",
+      "answer": "Durable design made for intense workouts."
+    }
+  ]
+  

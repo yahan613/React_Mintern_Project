@@ -1,33 +1,36 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { Provider } from "react-redux";
 import { useState } from 'react'
 import './App.css'
 import Home from "./Pages/Home";
-import Features from "./Pages/Features";
+import Product from "./Pages/Product";
 import Faq from "./Pages/Faq";
+import Cart from "./Pages/Cart";
 
 import Navbar from "./Component/Navbar";
-import Footer from "./Component/Footer";
+import store from "./redux/store";
 
 import 'animate.css';
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <Router
-      className="w-screen">
-      <div
-        style={{ fontFamily: 'Montserrat, sans-serif' }}
-        className="w-screen h-screen m-0 p-0 mt-0 flex flex-col justify-start overflow-x-hidden">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/faq" element={<Faq />} />
-        </Routes>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router
+        className="w-screen">
+        <div
+          style={{ fontFamily: 'Montserrat, sans-serif' }}
+          className="w-screen h-screen m-0 p-0 mt-0 flex flex-col justify-start overflow-x-hidden">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
+      </Router>
+    </Provider>
   )
 }
 
