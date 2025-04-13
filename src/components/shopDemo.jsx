@@ -24,7 +24,9 @@ export default function DialogDemo({ item }) {
     dispatch(
       increment({
         count: count,
-        type: item.type, // 假設 item 裡有 type 屬性
+        type: item.type,
+        id: item.id,
+        price: item.price, // 添加商品價格
       })
     );
   }
@@ -41,7 +43,7 @@ export default function DialogDemo({ item }) {
           <figure>
             <img src={item.img} alt={item.name} className="rounded-xl w-full h-98 object-cover" />
           </figure>
-          <div className="flex items-center">
+          <div className="flex items-center mt-4">
             <button className="bg-[#F3DC9F] p-2 " onClick={tempdecrement}>
               -
             </button>
@@ -50,7 +52,10 @@ export default function DialogDemo({ item }) {
               +
             </button>
           </div>
-          <div className="my-6">{item.func}</div>
+          <div className="my-4">
+            <span className="font-bold">NT$ {item.price}</span>
+          </div>
+          <div className="my-2">{item.func}</div>
         </div>
         <DialogTrigger>
           <Button type="submit" className="bg-[#D44721] text-white" onClick={AddToCart}>Add to cart</Button>

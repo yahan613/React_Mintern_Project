@@ -18,7 +18,7 @@
 
   --primary: #ACCAB2;
   --secondary: #78624D;
-  --tertiary: #E2CFC4;
+  --tertiary: #F3DC9F;
   --accent: #D44721;
   --neutral: #3D4451;
   --base-100: #FFFFFF;
@@ -58,18 +58,19 @@ a {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
+  box-shadow: 0 0 0 1px transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: box-shadow 0.25s;
 }
 
 button:hover {
-  border-color: #646cff;
+  box-shadow: 0 0 0 1px var(--secondary);
 }
 
 @media (prefers-color-scheme: light) {
@@ -79,5 +80,8 @@ button:hover {
   }
   button {
     background-color: #f9f9f9;
+  }
+  button:hover {
+    /* 保持背景顏色不變，只有邊框（box-shadow）變化 */
   }
 }

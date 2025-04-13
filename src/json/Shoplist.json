@@ -4,6 +4,7 @@
       "img": "./img/APPintro1.png",
       "name": "Sport band",
       "type": "device",
+      "price":1000,
       "func": "穿戴式運動手環，可感測使用者的運動次數與節奏，協助建立每日運動紀錄與目標追蹤"
     },
     {
@@ -11,6 +12,7 @@
       "img": "./img/APPintro2.png",
       "name": "Resistance bands",
       "type": "band",
+      "price":390,
       "func": "結合彈力帶訓練與感測裝置，紀錄肌力訓練表現，並回饋雞胸肉寶寶的成長狀態"
     },
     {
@@ -18,6 +20,7 @@
       "img": "./img/APPintro3.png",
       "name": "Chicken Banana",
       "type": "appearance",
+      "price":165,
       "func": "幫雞胸肉寶寶換上可愛造型吧~"
     }
   ]

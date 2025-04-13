@@ -7,24 +7,58 @@ const cartSlice = createSlice({
         deviceCount: 0,
         bandCount: 0,
         appearanceCount: 0,
+        items: [],
     },
     reducers: {
         increment: (state, action) => {
             console.log("action.payload", action.payload);
             state.cartCount += action.payload?.count || 0;
             state[`${action.payload?.type}Count`] += action.payload.count || 0;
+            
+            if (action.payload?.id) {
+                const existingItem = state.items.find(item => item.id === action.payload.id);
+                
+                if (existingItem) {
+                    existingItem.quantity += action.payload.count || 1;
+                } else {
+                    state.items.push({
+                        id: action.payload.id,
+                        type: action.payload.type,
+                        quantity: action.payload.count || 1,
+                        price: action.payload.price || 0
+                    });
+                }
+            }
+        },
+        removeItem: (state, action) => {
+            const itemToRemove = state.items.find(item => item.id === action.payload.id);
+            if (itemToRemove) {
+                state.cartCount -= itemToRemove.quantity;
+                state[`${itemToRemove.type}Count`] -= itemToRemove.quantity;
+                state.items = state.items.filter(item => item.id !== action.payload.id);
+            }
+        },
+        updateQuantity: (state, action) => {
+            const item = state.items.find(item => item.id === action.payload.id);
+            if (item) {
+                const diff = action.payload.quantity - item.quantity;
+                state.cartCount += diff;
+                state[`${item.type}Count`] += diff;
+                item.quantity = action.payload.quantity;
+            }
         },
         reset: (state) => {
             state.cartCount = 0;
             state.deviceCount = 0;
             state.bandCount = 0;
             state.appearanceCount = 0;
+            state.items = [];
         }
     }
 });
 
 // ✅ 正確 export actions
-export const { increment, reset } = cartSlice.actions;
+export const { increment, removeItem, updateQuantity, reset } = cartSlice.actions;
 
 // ✅ 正確 export reducer
 export default cartSlice.reducer;
