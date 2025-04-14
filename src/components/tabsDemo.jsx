@@ -39,7 +39,7 @@ export function TabsDemo() {
                     </div>
                     <div className="flex flex-col text-start p-4">
                         <h1 className="text-3xl pb-8 text-[var(--accent)]">Smart tracking, precise recording—every set counts!</h1>
-                        <p className="text-xl max-w-lg text-md text-[var(--warning)]">
+                        <p className="text-xl max-w-lg text-md text-[var(--secondary)]">
                             Take your strength training to the next level with our smart band.
                             Designed for weightlifters and fitness enthusiasts, this cutting-edge
                             wearable accurately detects and records your reps using advanced motion
@@ -53,7 +53,7 @@ export function TabsDemo() {
                 <div className="flex justify-between pl-8 pr-8 gap-20">
                     <div className="flex flex-col text-start p-4">
                         <h1 className="text-3xl pb-8 text-[var(--accent)]">Grow Your Muscle Baby, Track Every Workout!</h1>
-                        <p className="text-xl max-w-lg text-md text-[var(--warning)]">
+                        <p className="text-xl max-w-lg text-md text-[var(--secondary)]">
                         Track your workouts and watch your muscle baby grow with every rep. 
                         Get personalized workout plans and AI-driven insights to boost your 
                         progress and achieve your fitness goals.
