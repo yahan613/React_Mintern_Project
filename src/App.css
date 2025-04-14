@@ -23,6 +23,10 @@
   --darker-tertiary: #F3DC9F;
 }
 
+button:hover {
+  border-color: transparent !important;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

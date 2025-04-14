@@ -1,30 +1,84 @@
-import { Link, useLocation } from "react-router-dom"; // 確保使用的是 react-router-dom
+import { Link, useLocation, NavLink } from "react-router-dom"; // 確保使用的是 react-router-dom
+import { useState } from "react";
 
 const Navbar = () => {
-  const location = useLocation(); 
+  {/* 痊癒變數*/ }
+  const location = useLocation();
+
+  {/* 顏色*/ }
   const navbarBgColor =
     location.pathname === "/faq"
       ? "bg-[var(--darker-tertiary)]"
       : location.pathname === "/product" || location.pathname === "/cart"
         ? "bg-[var(--secondary)]"
         : "bg-[var(--primary)]";
-  const textColor = 
-    location.pathname === "/product" || location.pathname === "/cart" 
-      ? "text-[var(--tertiary)]" 
+  const textColor =
+    location.pathname === "/product" || location.pathname === "/cart"
+      ? "text-[var(--tertiary)]"
       : location.pathname === "/faq"
         ? "text-[var(--secondary)]"
         : "text-[var(--secondary)]";
-  console.log("當前路徑:", location.pathname, "文字顏色:", textColor); 
+
+  {/* 漢堡選單*/ }
+  const [isHambergerMenuOpen, setIsHambergerMenuOpen] = useState(false);
+  const toggleHambergerMenu = () => setIsHambergerMenuOpen(!isHambergerMenuOpen);
+
+  const navBarContent = [
+    { to: "/", label: "Home" },
+    { to: "/product", label: "Product" },
+    { to: "/faq", label: "FAQ" },
+  ];
+
   return (
     <nav className={`navbar ${navbarBgColor} text-base-100 p-4`}>
       <div className="container mx-auto flex justify-between items-center">
+        <button
+          className="flex items-center mx-4 lg:hidden hover:border-0"
+          onClick={toggleHambergerMenu}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            className={`w-8 h-8 fill-current ${textColor}`}
+          >
+            <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
+          </svg>
+        </button>
+        {isHambergerMenuOpen && (
+          <>
+            <div
+              className="fixed inset-0 bg-black opacity-30 z-40 transition-opacity duration-300 ease-in-out"
+              onClick={toggleHambergerMenu}
+            />
+
+            <div
+              className={`fixed inset-0 z-50 ${navbarBgColor} flex flex-col items-center justify-center space-y-6 w-3/4 h-full transition-transform duration-30 ease-in-out animate__animated animate__fadeInLeftBig`}
+              onClick={toggleHambergerMenu}
+            >
+              {navBarContent.map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  className={
+                    `block text-white text-base transition-all duration-500 ease-in-out hover:opacity-100 hover:[text-shadow:0px_0px_30px_white]`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </div>
+          </>
+
+        )}
+
         {/* 左側 Logo */}
-        <Link to="/" className={`text-xl font-bold ${textColor} hover:text-MyColor-primary`}>
-          LOGO
+        <Link to="/" className={`flex items-center text-xl font-bold ${textColor} hover:scale-105 transition-transform duration-300`}>
+          <img src="./img/ChickenBaby.png" alt="Logo" className="w-12 h-12 mr-2" />
+          <span className="text-[var(--warning)]">COUNTBUDDY</span>
         </Link>
 
         {/* 中間的導航連結 */}
-        <div className={`flex space-x-4 ml-auto mr-16 ${textColor}`}>
+        <div className={`hidden lg:flex space-x-4 ml-auto mr-16 ${textColor}`}>
           <Link
             to="/"
             className="text-xl hover:text-[var(--warning)] transition-transform duration-500"
@@ -65,7 +119,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };
 

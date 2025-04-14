@@ -4,9 +4,9 @@ const Footer = () => {
         <div
             style={{ fontFamily: 'Montserrat, sans-serif' }}
             className="bg-var(--secondary) w-full ">
-            <footer className="footer bg-[var(--secondary)] text-white py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 lg:px-16">
+            <footer className="footer bg-[var(--secondary)] text-white grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 lg:px-16 py-16 lg:py-6">
                 {/* 描述區塊 */}
-                <div className="flex flex-col items-center sm:items-center space-y-4">
+                <div className="flex flex-col items-center sm:items-center space-y-4 py-6">
                     <p className="font-extrabold text-[var(--warning)]">Design Teams</p>
                     <p className="indent-4 text-gray-300">
                         Team Name
@@ -14,7 +14,7 @@ const Footer = () => {
                 </div>
 
                 {/* 追蹤我們 */}
-                <div className="footer-followUs flex flex-col items-start sm:items-center space-y-4">
+                <div className="flex flex-col items-center sm:items-center space-y-4 py-6">
                     <p className="font-extrabold text-[var(--warning)]">Social Media</p>
                     <div className="flex space-x-4">
                         <a href="#">
@@ -39,11 +39,15 @@ const Footer = () => {
                 </div>
 
                 {/* 版權聲明 */}
-                <div className="flex flex-col items-center sm:items-center space-y-4">
-                    <p className="font-extrabold text-[var(--warning)]">Address</p>
-                    <p className="text-sm">106320台北市大安區和平東路二段134 號</p>
-                    <p className="font-extrabold text-[var(--warning)]">TEL</p>
-                    <p className="text-sm">02-1234-5678</p>
+                <div className="flex lg:flex-col justify-around items-baseline lg:items-center space-y-4 py-6 lg:space-y-0 lg:py-0">
+                    <div className="flex flex-col items-center">
+                        <p className="font-extrabold text-[var(--warning)]">Address</p>
+                        <p className="text-sm">106320台北市大安區和平東路二段134 號</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <p className="font-extrabold text-[var(--warning)]">TEL</p>
+                        <p className="text-sm">02-1234-5678</p>
+                    </div>
                 </div>
             </footer>
         </div>

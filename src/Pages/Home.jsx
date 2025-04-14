@@ -1,6 +1,6 @@
 import React from "react";
-import MainIntro from "@/Component/MainIntro";
-import IntroTab from "@/Component/IntroTab";
+import MainIntro from "@/Component/Home/MainIntro";
+import IntroTab from "@/Component/Home/IntroTab";
 import Footer from "@/Component/Footer";
 
 const Home = () => {
