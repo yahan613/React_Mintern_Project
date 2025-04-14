@@ -1,6 +1,15 @@
-import { useState } from 'react';
-import { Link, useLocation} from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useLocation } from "react-router-dom";
 import Footer from "@/Component/Footer";
+
+// 添加媒體查詢樣式
+const responsiveStyles = `
+  @media (max-width: 640px) {
+    .faq-container {
+      max-width: 250px !important;
+    }
+  }
+`;
 
 const Faq = () => {
   const [openId, setOpenId] = useState(null);
@@ -29,31 +38,38 @@ const Faq = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F3DC9F]">
+      {/* 添加媒體查詢樣式 */}
+      <style>{responsiveStyles}</style>
+      
       <main className="flex-grow bg-[#F3DC9F] px-4 pt-20 pb-12 md:px-8 lg:px-16">
         {/* FAQ 內容區塊和標題的容器 */}
         <div className="max-w-[800px] mx-auto relative mt-24">
           {/* FAQ 大標題 */}
-          <h1 className="text-9xl font-black font-stretch-normal text-center text-[#78624D] absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10" style={{ fontFamily: "var(--font-passion-one)" }}>
+          <h1 className="text-6xl sm:text-9xl font-black font-stretch-normal text-center text-[#78624D] absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10" style={{ fontFamily: "var(--font-passion-one)" }}>
             FAQ
           </h1>
           
           {/* FAQ 內容區塊 */}
-          <div className="bg-[#ACCAB2] rounded-2xl p-8 pt-16">
+          <div className="bg-[#ACCAB2] rounded-2xl p-4 md:p-8 pt-12 md:pt-16">
             <div className="space-y-6">
               {faqData.map((faq) => (
                 <div 
                   key={faq.id}
-                  className="rounded-xl overflow-hidden transition-all duration-300 ease-in-out bg-[#78624D]"
-                  style={{ width: '650px', margin: '0 auto' }}
+                  className="rounded-xl overflow-hidden transition-all duration-300 ease-in-out bg-[#78624D] w-full mx-auto faq-container"
+                  style={{ 
+                    maxWidth: '650px',
+                    width: '100%',
+                    margin: '0 auto' 
+                  }}
                 >
                   <button
                     onClick={() => toggleFaq(faq.id)}
-                    className="w-full px-6 py-8 flex justify-between items-center transition-colors"
+                    className="w-full px-3 md:px-6 py-4 md:py-8 flex justify-between items-center transition-colors"
                   >
-                    <h3 className="text-3xl font-semibold text-[#ECD086] text-left pl-4">
+                    <h3 className="text-xl md:text-3xl font-semibold text-[#ECD086] text-left pl-2 md:pl-4">
                       Q{faq.id}
                     </h3>
-                    <h4 className="font-semibold text-white mb-3">{faq.question}</h4>
+                    <h4 className="font-semibold text-white mb-3 text-sm md:text-base px-2">{faq.question}</h4>
                     <span className={`transform transition-transform duration-300 ${openId === faq.id ? 'rotate-90' : ''}`}>
                       <svg 
                         width="24" 
@@ -71,10 +87,10 @@ const Faq = () => {
                   </button>
                   
                   {openId === faq.id && (
-                    <div className="px-6 pb-6 bg-[#78624D] border-t border-[#E9A751]/20">
+                    <div className="px-3 md:px-6 pb-4 md:pb-6 bg-[#78624D] border-t border-[#E9A751]/20">
                       <div className="text-white mt-4 mb-6">
                         
-                        <p className="text-white/80 leading-relaxed">
+                        <p className="text-white/80 leading-relaxed text-sm md:text-base">
                           {faq.answer}
                         </p>
                       </div>
@@ -88,7 +104,7 @@ const Faq = () => {
 
         {/* 聯繫我們區塊 */}
         <div className="mt-12 text-center">
-          <h2 className="text-2xl font-semibold mb-4 text-[#78624D]">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-[#78624D]">
             More questions?
           </h2>
           <p className="text-gray-600 mb-4 ">
