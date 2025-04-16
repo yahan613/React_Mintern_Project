@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import Product from "./Pages/Product";
 import Faq from "./Pages/Faq";
 import Cart from "./Pages/Cart";
+import MemberCenter from "./Pages/Member";
 
 import Navbar from "./Component/Navbar";
 import store from "./redux/store";
@@ -27,6 +28,7 @@ function App() {
             <Route path="/product" element={<Product />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/member" element={<MemberCenter />} />
           </Routes>
         </div>
       </Router>

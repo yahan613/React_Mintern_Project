@@ -24,9 +24,10 @@ const Navbar = () => {
   const toggleHambergerMenu = () => setIsHambergerMenuOpen(!isHambergerMenuOpen);
 
   const navBarContent = [
-    { to: "/", label: "Home" },
-    { to: "/product", label: "Product" },
+    { to: "/", label: "HOME" },
+    { to: "/product", label: "PRODUCT" },
     { to: "/faq", label: "FAQ" },
+    { to: "/member", label: "MEMBER CENTER" }
   ];
 
   return (
