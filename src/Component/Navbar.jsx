@@ -2,7 +2,7 @@ import { Link, useLocation, NavLink } from "react-router-dom"; // 確保使用�
 import { useState } from "react";
 
 const Navbar = () => {
-  {/* 痊癒變數*/ }
+  {/* 全域變數*/ }
   const location = useLocation();
 
   {/* 顏色*/ }
@@ -27,6 +27,7 @@ const Navbar = () => {
     { to: "/", label: "Home" },
     { to: "/product", label: "Product" },
     { to: "/faq", label: "FAQ" },
+    { to: "/contact", label: "Contact" },
   ];
 
   return (
