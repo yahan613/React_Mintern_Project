@@ -1,7 +1,9 @@
 import React from 'react';
 import QuantityAdjuster from '@/components/ui/quantityAdjuster'
-import CustomCheckbox from '@/components/ui/CustomCheckbox';
+import CustomCheckbox from '@/components/ui/customCheckbox';
 import DeleteButton from '@/components/ui/DeleteButton';
+import DeleteIcon from "@/Asset/Icon/delete.svg";
+import Image from "@/components/ui/Image";
 
 const CartItem = ({ 
   item, 
