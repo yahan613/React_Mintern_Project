@@ -8,6 +8,7 @@ import Faq from "./Pages/Faq";
 import Cart from "./Pages/Cart";
 import Contact from "./Pages/Contact";
 import MemberCenter from "./Pages/Member";
+import Login from "./Pages/Login";
 
 import Navbar from "./Component/Navbar";
 import store from "./redux/store";
@@ -31,6 +32,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/member" element={<MemberCenter />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </Router>
