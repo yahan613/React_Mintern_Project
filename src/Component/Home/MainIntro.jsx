@@ -7,12 +7,15 @@ export default function MainIntro() {
   const [animateImg, setAnimateImg] = useState(false);
   const titleRef = useRef(null);
   const chineseRef = useRef(null);
+
   const chineseText =
     "肌胸肉寶寶是一款創新的健身應用，透過智慧手環來精準紀錄你的運動數據，並且將運動過程遊戲化，讓每一次的訓練都變得更有趣、更具挑戰性。你將能養成一個專屬的「肌胸肉寶寶」，隨著你的運動成果逐漸成長，並不斷進化。";
 
-  // 動畫：英文標題 + 中文字串
   useEffect(() => {
-    document.fonts.ready.then(() => {
+    // 避免 SSR 問題：確保只在 client 執行
+    if (typeof window === "undefined") return;
+
+    const animateText = () => {
       if (titleRef.current) {
         titleRef.current.style.visibility = "visible";
         const { words } = splitText(titleRef.current);
@@ -41,7 +44,15 @@ export default function MainIntro() {
           }
         );
       }
-    });
+    };
+
+    // 等字型載入完成後再觸發動畫
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => requestAnimationFrame(animateText));
+    } else {
+      // fallback for安全
+      setTimeout(() => requestAnimationFrame(animateText), 300);
+    }
   }, []);
 
   const handleAnimation = () => {
@@ -82,8 +93,7 @@ export default function MainIntro() {
         <img
           src="/Watch.png"
           alt="Watch"
-          className={`rounded-lg ${animateImg ? "animate__rubberBand animate__animated" : ""
-            }`}
+          className={`rounded-lg ${animateImg ? "animate__rubberBand animate__animated" : ""}`}
         />
       </div>
     </div>
