@@ -1,7 +1,7 @@
 import React from 'react';
 import QuantityAdjuster from '@/components/ui/QuantityAdjuster'
-import CustomCheckbox from '@/components/ui/CustomCheckbox';
-import DeleteButton from '@/components/ui/DeleteButton';
+import CustomCheckbox from '@/components/ui/customCheckbox';
+import DeleteButton from '@/components/ui/deleteButton';
 
 const CartItem = ({ 
   item, 
