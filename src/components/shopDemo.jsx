@@ -72,7 +72,6 @@ export default function DialogDemo({ item }) {
         </DialogContent>
       </Dialog>
       {/* 加入購物車後提示視窗 */}
-      
     </div>
   )
 }
