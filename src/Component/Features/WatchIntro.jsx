@@ -2,6 +2,7 @@ import { useState } from "react";
 import data from "../../json/WatchIntro.json";
 import "animate.css";
 
+
 const WatchIntro = () => {
     const [openId, setOpenId] = useState(null);
     const toggleintro = (id) => {

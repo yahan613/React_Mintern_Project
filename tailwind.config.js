@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif'], // 添加 Montserrat 字體
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       keyframes: {
         typing: {
@@ -22,5 +23,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [], // <== 這裡加入 motion 插件
 };
