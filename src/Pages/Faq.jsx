@@ -85,7 +85,6 @@ const Faq = () => {
               </Command>
             </div>
           </div>
-
           {/* FAQ 內容區塊 */}
           <div className="bg-[var(--primary)] rounded-2xl p-4 md:p-8 pt-12 md:pt-16">
             <div className="space-y-6">
