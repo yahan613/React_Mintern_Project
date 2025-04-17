@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/store';
+import { frame, motion, useSpring } from "motion/react"
+import { RefObject, useEffect, useRef } from "react"
 
 import './App.css';
 import Home from "./Pages/Home";
@@ -14,11 +16,17 @@ import Login from "./Pages/Login";
 import Navbar from "./Component/Navbar";
 
 import 'animate.css';
-
+console.log('Redux 初始狀態:', store.getState());
 function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate
+        loading={<div>Loading...</div>}
+        persistor={persistor}
+        onBeforeLift={() => {
+          console.log(store.getState());
+        }}
+      >
         <Router>
           <div
             style={{ fontFamily: 'Montserrat, sans-serif' }}
