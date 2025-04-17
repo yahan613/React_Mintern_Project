@@ -11,7 +11,6 @@ const Home = () => {
       <MainIntro />
       <IntroTab />
       <Footer />
-      
     </div>
   );
 };

@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "img": "./img/APPintro1.png",
+      "img": "./img/Shoplist1.png",
       "name": "Sport band",
       "type": "device",
       "price":1000,
@@ -9,7 +9,7 @@
     },
     {
       "id": 2,
-      "img": "./img/APPintro2.png",
+      "img": "./img/Shoplist2.png",
       "name": "Resistance bands",
       "type": "band",
       "price":390,
@@ -17,7 +17,7 @@
     },
     {
       "id": 3,
-      "img": "./img/APPintro3.png",
+      "img": "./img/Shoplist3.png",
       "name": "Chicken Banana",
       "type": "appearance",
       "price":165,

@@ -20,12 +20,11 @@ import { useEffect, useRef, useState } from 'react';
 export function TabsDemo() {
     const [isVisible, setIsVisible] = useState(false);
     const elementRef = useRef(null);
-
     useEffect(() => {
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 // 這裡可以監聽進入螢幕時的狀態
-                console.log("entry.isIntersecting");
                 setIsVisible(entry.isIntersecting);
             },
             {
@@ -36,6 +35,7 @@ export function TabsDemo() {
         );
 
         if (elementRef.current) {
+
             observer.observe(elementRef.current); // 開始觀察元素
         }
 
@@ -55,9 +55,9 @@ export function TabsDemo() {
         >
             <Tabs
                 defaultValue="band"
-                className={"w-[70%] items-center mb-20 target-element"}
+                className="w-[80vw] items-center mb-4 lg:mb-20 target-element"
             >
-                <TabsList className="grid w-full grid-cols-2 bg-[var(--secondary)] p-1 mb-4">
+                <TabsList className="grid w-[100%] grid-cols-2 bg-[var(--secondary)] p-1 mb-4">
                     <TabsTrigger value="band" className="data-[state=active]:bg-[var(--warning)] data-[state=active]:text-[var(--secondary)] text-[var(--tertiary)] font-bold border-none">
                         BAND
                     </TabsTrigger>
@@ -65,10 +65,11 @@ export function TabsDemo() {
                         APP
                     </TabsTrigger>
                 </TabsList>
-                <TabsContent value="band" className="w-full mt-8">
-                    <div className="flex justify-between pl-8 pr-8 gap-20">
+
+                <TabsContent value="band" className="w-[70%] mt-8">
+                    <div className="flex flex-col justify-between lg:flex-row pl-8 pr-8 gap-20">
                         <div
-                            className="lg:w-1/3 sm:w-2/3 ml-4 p-16 rounded-lg bg-[var(--base-200)] flex items-center justify-center"
+                            className="w-2/3 lg:w-full self-center ml-4 p-16 rounded-lg bg-[var(--base-200)] flex items-center justify-center"
                         >
                             <img
                                 src="/Watch.png"
@@ -87,8 +88,13 @@ export function TabsDemo() {
                     </div>
                 </TabsContent>
 
-                <TabsContent value="app" className="w-full mt-8 ">
-                    <div className="flex justify-between pl-8 pr-8 gap-20">
+                <TabsContent value="app" className="w-[70%] mt-8 ">
+                    <div className="flex flex-col items-center justify-between lg:flex-row-reverse pl-8 pr-8 gap-20">
+                        <img
+                            src="/APPUI.png"
+                            alt="App UI"
+                            className="lg:w-1/3 sm:w-2/3 h-[360px] object-contain "
+                        />
                         <div className="flex flex-col text-start p-4">
                             <h1 className="text-3xl pb-8 text-[var(--accent)]">Grow Your Muscle Baby, Track Every Workout!</h1>
                             <p className="text-xl max-w-lg text-md text-[var(--secondary)]">
@@ -97,11 +103,6 @@ export function TabsDemo() {
                                 progress and achieve your fitness goals.
                             </p>
                         </div>
-                        <img
-                            src="/APPUI.png"
-                            alt="App UI"
-                            className="lg:w-1/3 sm:w-2/3 h-[360px] object-contain "
-                        />
                     </div>
                 </TabsContent>
             </Tabs>

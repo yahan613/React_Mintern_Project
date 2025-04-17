@@ -65,7 +65,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--primary)]">
+    <div className="h-auto flex flex-col bg-[var(--primary)]">
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-3xl mx-auto text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-[var(--secondary)] mb-2">

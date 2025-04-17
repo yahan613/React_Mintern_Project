@@ -6,19 +6,30 @@ import DialogDemo from "@/components/shopDemo";
 export default function ShoppingList() {
 
     return (
-        <div className="flex flex-col items-center justify-center gap-4 py-12 md:gap-6 md:py-16 bg-[var(--primary)]">
+        <div
+            className="flex flex-col items-center justify-center gap-4 py-12 md:gap-6 md:py-16 bg-[var(--primary)]"
+        >
             <h2 className="text-4xl font-bold tracking-tight md:text-5xl text-center text-[var(--accent)]">
                 "Train Smart. Live Strong. Choose Yours."
             </h2>
-            <div className="w-auto mx-auto text-center text-lg md:text-xl flex flex-col gap-4">
-                <div className="flex justify-between w-auto h-auto p-4">
+            <div className="w-full mx-auto text-center text-lg md:text-xl flex gap-4 items-center justify-center">
+                <div className="flex lg:flex-row flex-col justify-between">
                     {data.map((item) => (
                         <div
                             key={item.id}
-                            className="flex flex-col items-center justify-center w-full h-20 bg-[var(--base-200)] rounded-md shadow-lg m-8 p-4 text-[var(--secondary)]"
+                            className="flex flex-col items-center w-[30vw] h-[400px] m-8 p-4 text-[var(--secondary)]"
                         >
-                            <img src={item.icon} alt={item.img} className="w-10 h-10" />
-                            <span className="text-lg text-center m-4">{item.name}</span>
+                            <div className="sm:w-[30vw] lg:w-[1vw] h-[250px] p-4 border border-solid rounded-lg shadow-[0px_3px_20px_rgba(0,0,0,0.5)] bg-[var(--base-200)]">
+                                <img
+                                    src={item.img}
+                                    alt="app"
+                                    className="sm:w-[50vw] lg:w-[25vw] h-[180px]"
+                                />
+                            </div>
+                            <div className="flex flex-col items-center justify-center h-[50px] my-8">
+                                <span className="text-lg text-center m-2 font-bold">{item.name}</span>
+                                <span className="text-sm text-center">{item.func}</span>
+                            </div>
                             <DialogDemo item={item} />
                         </div>
                     ))}
