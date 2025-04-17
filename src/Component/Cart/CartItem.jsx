@@ -1,5 +1,5 @@
 import React from 'react';
-import QuantityAdjuster from '@/components/ui//QuantityAdjuster';
+import QuantityAdjuster from '@/components/ui/QuantityAdjuster';
 import CustomCheckbox from '@/components/ui/CustomCheckbox';
 import DeleteButton from '@/components/ui/DeleteButton';
 
