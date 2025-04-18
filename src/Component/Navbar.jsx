@@ -7,7 +7,7 @@ const Navbar = () => {
 
   {/* 顏色*/ }
   const navbarBgColor =
-    location.pathname === "/faq"
+    location.pathname === "/faq" || location.pathname === "/login" || location.pathname === "/signup"
       ? "bg-[var(--darker-tertiary)]"
       : location.pathname === "/product" || location.pathname === "/cart"
         ? "bg-[var(--secondary)]"
@@ -27,7 +27,6 @@ const Navbar = () => {
     { to: "/", label: "HOME" },
     { to: "/product", label: "PRODUCT" },
     { to: "/faq", label: "FAQ" },
-    { to: "/contact", label: "Contact" },
     { to: "/member", label: "Member" },
   ];
 

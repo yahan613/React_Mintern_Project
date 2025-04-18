@@ -14,6 +14,7 @@ import Contact from "./Pages/Contact";
 import MemberCenter from "./Pages/Member";
 import Login from "./Pages/Login";
 import Navbar from "./Component/Navbar";
+import Signup from "./Pages/Signup";
 
 import 'animate.css';
 console.log('Redux 初始狀態:', store.getState());
@@ -40,6 +41,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/member" element={<MemberCenter />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
             </Routes>
           </div>
         </Router>
