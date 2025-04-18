@@ -9,7 +9,7 @@ const LoginTab = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "test@example.com" && password === "123456") {
+    if (email === "test@example.com") {
       navigate("/member");
     } else {
       alert("Email or password is incorrect!");
@@ -32,6 +32,7 @@ const LoginTab = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="e.g. test@example.com"
               className="w-full px-4 py-2 bg-[var(--base-200)] rounded-lg shadow-sm"
             />
           </div>
@@ -42,6 +43,7 @@ const LoginTab = () => {
             <input
               type="password"
               value={password}
+              placeholder=""
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 bg-[var(--base-200)] rounded-lg shadow-sm"
             />

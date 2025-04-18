@@ -57,6 +57,33 @@ const cartSlice = createSlice({
     }
 });
 
+
+/*const loginSlice = createSlice({
+    name: 'login',
+    initialState: {
+        isLoggedIn: false,
+        user: null,
+    },
+    reducers: {
+        login: (state, action) => {
+            state.isLoggedIn = true;
+            state.user = action.payload;
+        },
+        logout: (state) => {
+            state.isLoggedIn = false;
+            state.user = null;
+        },
+    }
+});
+*/
+
+// Export actions
+//export const { login, logout } = loginSlice.actions;
+
+// Export reducer
+//export const loginReducer = loginSlice.reducer;
+
+
 // ✅ 正確 export actions
 export const { increment, removeItem, updateQuantity, reset } = cartSlice.actions;
 

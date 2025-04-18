@@ -9,6 +9,7 @@ import { combineReducers } from 'redux'
 // 把所有 reducer 組合起來（目前只有一個）
 const rootReducer = combineReducers({
   cart: cartReducer,
+  //login: loginReducer,
 })
 
 // persist 設定
