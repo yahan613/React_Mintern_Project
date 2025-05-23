@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SignupTab1 from "@/Component/Signup/SignupTab1";
-import SignupTab2 from "@/Component/Signup/SignupTab2";
+import SignupTab1 from "@/Component/Signup/SignupTab2";
+import SignupTab2 from "@/Component/Signup/SignupTab1";
 import SignupTab3 from "@/Component/Signup/SignupTab3";
 import Footer from "@/Component/Footer";
 
