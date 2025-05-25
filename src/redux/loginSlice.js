@@ -1,28 +1,40 @@
-// ✅ loginSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const loginSlice = createSlice({
     name: 'login',
     initialState: {
         isLoggedIn: false,
-        user: null,
+        userName: null,
+        userMail: null,
+        userId: null,
+        userChickenBaby: null,
     },
     reducers: {
+        signup: (state, action) => {
+            state.userId = action.payload.userId;
+            state.userName = action.payload.userName;
+            state.userMail = action.payload.email;
+        },
         login: (state, action) => {
             state.isLoggedIn = true;
-            state.user = action.payload;
+            state.userName = action.payload.userName;
+            state.userMail = action.payload.email;
+            state.userId = action.payload.userId;
+            state.userChickenBaby = action.payload.userChickenBaby;
         },
         logout: (state) => {
             state.isLoggedIn = false;
-            state.user = null;
+            state.userName = null;
+            state.userMail = null;
         },
-        setUserName: (state, action) => {
-            state.name = action.payload;
-        },
+        // redux/loginSlice.js
+        setData: (state, action) => {
+            state.userName = action.payload.userName;
+            state.userChickenBaby = action.payload.userChickenBaby;
+        }
     },
 });
 
-export const { login, logout, setUserName } = loginSlice.actions;
+export const { login, logout, setData, signup } = loginSlice.actions;
 
 export default loginSlice.reducer;
-

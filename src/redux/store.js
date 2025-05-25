@@ -3,13 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // 使用 localStorage 作為儲存位置
 import cartReducer from './cartSlice'
+import loginReducer from './loginSlice'
 
 import { combineReducers } from 'redux'
 
-// 把所有 reducer 組合起來（目前只有一個）
+
 const rootReducer = combineReducers({
   cart: cartReducer,
-  //login: loginReducer,
+  login: loginReducer,
 })
 
 // persist 設定

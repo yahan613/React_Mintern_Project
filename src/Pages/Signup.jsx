@@ -1,8 +1,7 @@
 import { useState } from "react";
-import SignupTab1 from "@/Component/Signup/SignupTab2";
-import SignupTab2 from "@/Component/Signup/SignupTab1";
+import SignupTab1 from "@/Component/Signup/SignupTab1";
+import SignupTab2 from "@/Component/Signup/SignupTab2";
 import SignupTab3 from "@/Component/Signup/SignupTab3";
-import Footer from "@/Component/Footer";
 
 const Signup = () => {
   const [step, setStep] = useState(1); // 預設顯示第一個 Tab

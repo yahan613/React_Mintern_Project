@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { handleGoogleLogin } from "@/firebase/auth";
+import { login } from "@/redux/loginSlice";
 
 
 const LoginTab = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +18,26 @@ const LoginTab = () => {
       navigate("/member");
     } else {
       alert("Email or password is incorrect!");
+    }
+  };
+  const handleLogin = async () => {
+    let result = await handleGoogleLogin();
+    if (result === false) return;
+    const db = getFirestore();
+    const userRef = doc(db, "users", result.uid);
+    const userSnap = await getDoc(userRef);
+    if (userSnap.exists()) {
+      dispatch(
+        login({
+          userId: result.uid,
+          email: result.email,
+          userName: userSnap.data().userName || "User",
+          userChickenBaby: userSnap.data().userChickenBaby || "ChickenBaby",
+        })
+      );
+      navigate("/member");
+    } else {
+      alert("尚未註冊！");
     }
   };
 
@@ -53,6 +78,13 @@ const LoginTab = () => {
             className="w-full py-2 bg-[var(--accent)] hover:bg-[var(--warning)] text-white font-semibold rounded-lg shadow-md transition duration-200"
           >
             登入
+          </button>
+          <button
+            onClick={handleLogin}
+            type="button"
+            className="w-full py-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200"
+          >
+            使用GOOGLE帳號直接登入
           </button>
         </form>
         <p className="mt-6 text-center text-sm text-gray-600">

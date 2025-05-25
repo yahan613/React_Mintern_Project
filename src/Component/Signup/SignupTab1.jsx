@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { motion } from "framer-motion"; // 加這行！
-import { auth, googleProvider } from "@/firebase/auth";
-import { signInWithPopup } from "firebase/auth"; 
+import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { signup } from "@/redux/loginSlice";
+import { handleGoogleSignup } from "@/firebase/auth";
+
 
 const SignupTab1 = ({ onNext }) => {
-  const [value, setValue] = useState("");
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleInputChange = (e) => {
@@ -12,21 +14,17 @@ const SignupTab1 = ({ onNext }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      // result.user 會有用戶資訊
-      // 你可以在這裡呼叫 onNext 或導向其他頁面
-      onNext({
-        email: result.user.email,
-        googleUser: true,
-        uid: result.user.uid,
-      });
-    } catch (error) {
-      alert("Google 註冊失敗：" + error.message);
-    }
-  };
-
+  const handleLogin = async () => {
+    let result = await handleGoogleSignup()
+    if (result === false) return;
+    dispatch(
+      signup({
+        userId: result.uid,
+        email: result.email,
+      })
+    );
+    onNext(); // ✅ 現在這行會被執行
+  }
 
   return (
     <motion.div
@@ -48,7 +46,7 @@ const SignupTab1 = ({ onNext }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            onNext(formData);
+            onNext();
           }}
           className="space-y-5"
         >
@@ -86,15 +84,15 @@ const SignupTab1 = ({ onNext }) => {
           >
             下一步
           </button>
+          <div className="text-center mt-4">or</div>
+          <button
+            onClick={handleLogin}
+            type="button"
+            className="w-full py-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200"
+          >
+            使用GOOGLE帳號直接註冊
+          </button>
         </form>
-        <div className="text-center mt-4">or</div>
-        <button
-          onClick={handleGoogleLogin}
-          type="button"
-          className="w-full py-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200"
-        >
-          使用GOOGLE帳號直接註冊
-        </button>
       </div>
     </motion.div>
   );
