@@ -12,8 +12,13 @@ const WatchIntro = () => {
     const [animate, setAnimate] = useState(false);
 
     const handleAnimation = () => {
-        // 觸發動畫
-        setAnimate(true);
+        // 先移除動畫類名
+        setAnimate(false);
+        
+        // 使用 setTimeout 確保在下一幀添加動畫類名
+        setTimeout(() => {
+            setAnimate(true);
+        }, 10);
 
         // 在動畫結束後移除類名，讓動畫可以再次觸發
         setTimeout(() => {
@@ -22,9 +27,9 @@ const WatchIntro = () => {
     };
 
     return (
-        <div className="home-container flex flex-col lg:flex-row items-center justify-around w-screen h-auto bg-[var(--secondary)] pb-20 px-40 flex-wrap gap-10 sm:flex-row flex-col">
-
-            <div className="w-3/4 lg:w-2/5 pt-4 mt-8 shadow-[inset_0px_5px_20px_rgba(0,0,0,0.5)] rounded-lg bg-[var(--base-200)] flex">
+        <div className="home-container flex flex-col lg:flex-row items-center justify-around w-screen h-auto bg-[var(--secondary)] pb-20 px-4 lg:px-4 flex-wrap gap-10">
+            {/* 手錶圖片容器 */}
+            <div className="w-full lg:w-2/5 pt-4 mt-8  rounded-lg bg-[var(--base-100)] flex justify-center">
                 <div className="w-auto h-auto animate__fadeIn animate__animated">
                     <img
                         src="/Watch2.png"
@@ -35,20 +40,19 @@ const WatchIntro = () => {
                 </div>
             </div>
 
-            <div className="w-3/5 justify-center items-center rounded-2xl lg:pt-8 lg:w-1/2 sm:w-2/3 lg:mt-32">
-                <div className="space-y-6 flexflex-col items-center justify-center min-h-screen">
+            {/* 問答框容器 */}
+            <div className="w-full lg:w-2/5 flex justify-center items-center rounded-2xl">
+                <div className="space-y-3 flex flex-col justify-center w-full">
                     {data.map((intro) => (
                         <div
                             key={intro.id}
-                            className="self-center rounded-xl transition-all duration-300 ease-in-out bg-[var(--secondary)] shadow-2xl"
-                            style={{ width: "auto", margin: '0 auto' }}
+                            className="w-full rounded-xl transition-all duration-300 ease-in-out bg-[var(--secondary)] shadow-2xl"
                         >
                             <div className="flex justify-between items-center w-full shadow-xl mb-2 rounded-t-xl">
                                 <button
                                     onClick={() => toggleintro(intro.id)}
-                                    className="hover:border-0 w-100 px-6 py-8 flex justify-between items-center transition-colors"
+                                    className="hover:border-0 w-full px-6 py-8 flex justify-between items-center transition-colors"
                                 >
-
                                     <span className={`transform transition-transform duration-300 ${openId === intro.id ? 'rotate-90' : ''}`}>
                                         <svg
                                             width="24"
@@ -64,12 +68,10 @@ const WatchIntro = () => {
                                         </svg>
                                     </span>
 
-                                    <h3 className="text-2xl lg:text-3xl text-[#ECD086] text-left w-[1/2] overflow-wrap break-word ml-4">
+                                    <h3 className="text-2xl lg:text-3xl text-[#ECD086] text-left flex-1 ml-4">
                                         {intro.question}
                                     </h3>
-
                                 </button>
-
                             </div>
 
                             {openId === intro.id && (

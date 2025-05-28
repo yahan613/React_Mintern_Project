@@ -17,9 +17,9 @@ export default function ShoppingList() {
                     {data.map((item) => (
                         <div
                             key={item.id}
-                            className="flex flex-col items-center w-[30vw] h-[400px] m-8 p-4 text-[var(--secondary)]"
+                            className="flex flex-col items-center w-[25vw] h-[400px] m-8 p-4 text-[var(--secondary)]"
                         >
-                            <div className="sm:w-[30vw] lg:w-[1vw] h-[250px] p-4 border border-solid rounded-lg shadow-[0px_3px_20px_rgba(0,0,0,0.5)] bg-[var(--base-200)]">
+                            <div className="sm:w-[30vw] lg:w-[1vw] h-[250px] p-4 rounded-lg shadow-[0px_3px_20px_rgba(0,0,0,0.5)] bg-[var(--base-100)]">
                                 <img
                                     src={item.img}
                                     alt="app"
@@ -28,7 +28,7 @@ export default function ShoppingList() {
                             </div>
                             <div className="flex flex-col items-center justify-center h-[50px] my-8">
                                 <span className="text-lg text-center m-2 font-bold">{item.name}</span>
-                                <span className="text-sm text-center">{item.func}</span>
+                                <span className="text-sm text-center w-[20vw]">{item.func}</span>
                             </div>
                             <DialogDemo item={item} />
                         </div>

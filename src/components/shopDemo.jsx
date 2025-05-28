@@ -44,13 +44,13 @@ export default function DialogDemo({ item }) {
         <DialogTrigger asChild className="bg-[var(--secondary)]">
           <Button className="text-[var(--darker-tertiary)] hover:text-[var(--secondary)] hover:bg-[var(--darker-tertiary)]">Buy Now</Button>
         </DialogTrigger>
-        <DialogContent className="w-[80vw] lg:w-[500vw] h-[90vh] bg-[#D9D9D9] p-12">
-          <DialogHeader className="bg-[var(--base-200)] mb-4">
+        <DialogContent className="w-[80vw] lg:w-[500vw] h-[70vh] bg-[#D9D9D9] p-12">
+          <DialogHeader className="mb-4 items-center">
             <DialogTitle>{item.name}</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center">
             <figure>
-              <img src={item.img} alt={item.name} className="rounded-xl object-cover w-[200px] bg-[var(--primary)] object-cover" />
+              <img src={item.img} alt={item.name} className="rounded-xl w-[200px] bg-[var(--primary)] object-cover" />
             </figure>
             <div className="flex items-center mt-4">
               <button className="bg-[#F3DC9F] p-2 " onClick={tempdecrement}>
@@ -64,10 +64,10 @@ export default function DialogDemo({ item }) {
             <div className="my-4">
               <span className="font-bold">NT$ {item.price}</span>
             </div>
-            <div className="my-2">{item.func}</div>
+            <div className="my-2 text-center w-[25vw]">{item.func}</div>
           </div>
           <DialogTrigger>
-            <Button type="submit" className="bg-[#D44721] text-white" onClick={AddToCart}>Add to cart</Button>
+            <Button type="submit" className="bg-[#78624D] hover:bg-[#D44721] text-white" onClick={AddToCart}>Add to cart</Button>
           </DialogTrigger>
         </DialogContent>
       </Dialog>
