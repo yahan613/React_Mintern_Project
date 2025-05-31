@@ -53,6 +53,21 @@ const cartSlice = createSlice({
             state.bandCount = 0;
             state.appearanceCount = 0;
             state.items = [];
+        },
+        decrement: (state, action) => {
+            const { id, type } = action.payload;
+            const existingItem = state.items.find(item => item.id === id && item.type === type);
+            
+            if (existingItem) {
+                if (existingItem.quantity > 1) {
+                    existingItem.quantity -= 1;
+                } else {
+                    state.items = state.items.filter(item => !(item.id === id && item.type === type));
+                }
+            }
+        },
+        clearCart: (state) => {
+            state.items = [];
         }
     }
 });
@@ -85,7 +100,7 @@ const cartSlice = createSlice({
 
 
 // ✅ 正確 export actions
-export const { increment, removeItem, updateQuantity, reset } = cartSlice.actions;
+export const { increment, removeItem, updateQuantity, reset, decrement, clearCart } = cartSlice.actions;
 
 // ✅ 正確 export reducer
 export default cartSlice.reducer;

@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="flex flex-col items-center sm:items-center space-y-4 py-6">
                     <p className="font-extrabold text-[var(--warning)]">Design Teams</p>
                     <p className="indent-4 text-gray-300">
-                        Team Name
+                        許雅涵  李恩亞
                     </p>
                 </div>
 

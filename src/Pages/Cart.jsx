@@ -79,10 +79,10 @@ const Cart = () => {
       {/* 主內容區 */}
       <div className="flex-grow flex flex-col">
         <div className='flex justify-start'>
-          <h1 className="text-1xl text-white mb-4 sm:mb-8 ml-12">Home/cart</h1>
+          <h1 className="text-1xl text-white mb-4 sm:mb-8 ml-28">Home/cart</h1>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-8 md:px-12 mb-4 sm:mb-8 flex-grow">
+        <div className="container mx-auto px-4 sm:px-8 md:px-12 mb-4 flex-grow">
           {/* 大容器，使用 flex-row 但在小螢幕上變成 flex-col */}
           <div className="flex flex-col sm:flex-row gap-6">
             {/* 左側容器 - 購物車商品列表 */}

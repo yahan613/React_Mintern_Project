@@ -62,9 +62,9 @@ const Faq = () => {
               </h1>
             </div>
             
-            {/* 搜索框 */}
+            {/*搜尋欄*/}
             <div className="z-20 md:w-[400px] mr-16">
-              <Command className="rounded-lg border shadow-md bg-[var(--secondary)]">
+              <Command className="rounded-lg  shadow-md bg-[var(--secondary)]">
                 <div className="flex items-center px-3">
                   <Search className="mr-2 h-4 w-4 shrink-0 opacity-90 text-[var(--tertiary)]" />
                   <input
