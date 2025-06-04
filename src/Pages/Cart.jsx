@@ -77,20 +77,17 @@ const Cart = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[var(--secondary)]">
       {/* 主內容區 */}
-      <div className="flex-grow flex flex-col">
-        <div className='flex justify-start'>
-          <h1 className="text-1xl text-white mb-4 sm:mb-8 ml-28">Home/cart</h1>
-        </div>
+      <div className="flex-grow flex flex-col bg-[var(--secondary)]">
 
-        <div className="container mx-auto px-4 sm:px-8 md:px-12 mb-4 flex-grow">
-          {/* 大容器，使用 flex-row 但在小螢幕上變成 flex-col */}
-          <div className="flex flex-col sm:flex-row gap-6">
+        <div className="container mx-auto px-4 sm:px-8 sm:px-12 mb-4 flex-grow">
+          {/* 大容器，使用 flex-row 但在平板以下的裝置上變成 flex-col */}
+          <div className="flex flex-col items-center lg:flex-row gap-6 mt-5">
             {/* 左側容器 - 購物車商品列表 */}
-            <div className="w-full sm:w-3/5 mb-6 sm:mb-0">
+            <div className="w-full lg:w-3/5 mb-6 sm:mb-0">
               {cart.items.length === 0 ? (
                 <EmptyCart />
               ) : (
-                <div className="space-y-4">
+                <div className="lg:space-y-4 space-y-8">
                   {/* 動態渲染購物車商品 */}
                   {cart.items.map((item) => {
                     const product = getProductDetails(item.id);

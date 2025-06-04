@@ -134,7 +134,7 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
   };
 
   return (
-    <div className="w-full sm:w-2/5 bg-[var(--primary)] p-6 rounded-lg shadow-md h-fit">
+    <div className="w-full lg:w-2/5 bg-[var(--primary)] p-6 rounded-lg shadow-md h-fit">
       <h2 className="text-2xl font-semibold mb-8 text-[var(--secondary)]">Order Summary</h2>
       
       {selectedItems.length === 0 ? (
