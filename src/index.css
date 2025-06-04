@@ -21,7 +21,7 @@
   --tertiary: #F3DC9F;
   --accent: #D44721;
   --neutral: #3D4451;
-  --base-100: #FFFFFF;
+  --base-100: #F5F5F5;
   --info: #3ABFF8;
   --success: #36D399;
   --warning: #FBBD23;
@@ -41,6 +41,21 @@
 
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(+30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.5s ease-out forwards;
 }
 
 html, body {
@@ -84,9 +99,11 @@ button {
   transition: box-shadow 0.25s;
 }
 
+/*
 button:hover {
   border: none;
 }
+*/
 
 @media (prefers-color-scheme: light) {
   :root {

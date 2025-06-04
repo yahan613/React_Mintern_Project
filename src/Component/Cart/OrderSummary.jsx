@@ -1,29 +1,136 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../../redux/cartSlice';
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc, updateDoc, increment, setDoc } from 'firebase/firestore'
+import { app } from "@/firebase/config";
+
+const db = getFirestore(app)
 
 const OrderSummary = ({ selectedItems, onCheckout }) => {
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [address, setAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("credit_card");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const shippingFee = 50;
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.login);
 
   const subtotal = calculateTotal(selectedItems);
   const total = subtotal + shippingFee;
 
-  const handleCheckout = () => {
-    onCheckout();
-    // 移除已結帳的商品
-    selectedItems.forEach(item => {
-      dispatch(removeItem({ id: item.id, type: item.type }));
-    });
-    setShowSuccess(true);
-    // 3秒後自動關閉提示
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 3000);
+  const generateOrderNumber = async () => {
+    try {
+      // 獲取或創建計數器文檔
+      const counterRef = doc(db, 'counters', 'orderCounter');
+      const counterDoc = await getDoc(counterRef);
+
+      let newCount;
+      if (!counterDoc.exists()) {
+        // 如果計數器不存在，創建一個新的計數器
+        newCount = 1;
+        await setDoc(counterRef, {
+          count: newCount
+        });
+      } else {
+        // 如果計數器存在，獲取當前計數並增加
+        newCount = counterDoc.data().count + 1;
+        // 更新計數器
+        await updateDoc(counterRef, {
+          count: newCount
+        });
+      }
+
+      // 將數字轉換為三位數的字符串，不足補零
+      return newCount.toString().padStart(3, '0');
+    } catch (error) {
+      console.error('Error generating order number:', error);
+      // 如果出錯，使用時間戳作為備用訂單號
+      return Date.now().toString().slice(-3);
+    }
+  };
+
+  const handleCheckout = async () => {
+    if (!userInfo.isLoggedIn) {
+      alert('請先登入再進行結帳');
+      return;
+    }
+
+    if (!address) {
+      alert('請填寫配送地址');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      console.log('Starting checkout process...');
+      console.log('User info:', userInfo);
+      console.log('Selected items:', selectedItems);
+
+      // 生成訂單編號
+      const orderNumber = await generateOrderNumber();
+
+      // 創建訂單數據
+      const orderData = {
+        orderNumber: orderNumber,
+        userId: userInfo.userId,
+        items: selectedItems.map(item => ({
+          id: item.id || '',
+          name: item.name || '',
+          quantity: item.quantity || 0,
+          price: item.price || 0,
+          subtotal: item.subtotal || 0
+        })),
+        subtotal: subtotal || 0,
+        shippingFee: shippingFee || 0,
+        total: total || 0,
+        address: address || '',
+        paymentMethod: paymentMethod || 'credit_card',
+        status: 'pending',
+        orderDate: serverTimestamp(),
+        userName: userInfo.userName || '',
+        userEmail: userInfo.userMail || ''
+      };
+
+      console.log('Order data to be saved:', orderData);
+
+      // 保存訂單到 Firebase
+      try {
+        const ordersRef = collection(db, 'orders');
+        console.log('Orders collection reference created');
+        
+        const orderRef = await addDoc(ordersRef, orderData);
+        console.log('Order saved successfully with ID:', orderRef.id);
+
+        // 移除已結帳的商品
+        selectedItems.forEach(item => {
+          dispatch(removeItem({ id: item.id, type: item.type }));
+        });
+
+        setShowSuccess(true);
+        // 3秒後自動關閉提示
+        setTimeout(() => {
+          setShowSuccess(false);
+          onCheckout();
+        }, 3000);
+      } catch (firebaseError) {
+        console.error('Firebase Error:', {
+          message: firebaseError.message,
+          code: firebaseError.code,
+          stack: firebaseError.stack
+        });
+        throw new Error(`Firebase 保存失敗: ${firebaseError.message}`);
+      }
+    } catch (error) {
+      console.error('Error details:', {
+        message: error.message,
+        code: error.code,
+        stack: error.stack
+      });
+      alert(`訂單保存失敗：${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -80,6 +187,7 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
                   placeholder="Enter your delivery address"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
+                  required
                 />
               </div>
             )}
@@ -113,11 +221,11 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
           
           {/* 結帳按鈕 */}
           <button
-            className="w-full bg-[var(--darker-tertiary)] text-[var(--secondary)] py-3 rounded-lg mt-4 font-semibold"
-            disabled={selectedItems.length === 0}
+            className="w-full bg-[var(--darker-tertiary)] text-[var(--secondary)] py-3 rounded-lg mt-4 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={selectedItems.length === 0 || isLoading || !address}
             onClick={handleCheckout}
           >
-            Checkout
+            {isLoading ? 'Processing...' : 'Checkout'}
           </button>
         </div>
       )}

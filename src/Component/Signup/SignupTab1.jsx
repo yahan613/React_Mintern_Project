@@ -28,7 +28,7 @@ const SignupTab1 = ({ onNext }) => {
 
   return (
     <motion.div
-      className="w-auto h-auto flex flex-col items-center justify-center pt-10"
+      className="w-auto h-auto flex flex-col items-center justify-center pt-5"
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100 }}
@@ -39,7 +39,7 @@ const SignupTab1 = ({ onNext }) => {
         src="./img/ChickenBaby.png"
         alt="login"
       />
-      <div className="w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-start mb-10">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-12 text-start mb-10">
         <h1 className="text-4xl font-bold mb-6 text-center text-[var(--secondary)]">
           Set up your account
         </h1>
@@ -48,7 +48,6 @@ const SignupTab1 = ({ onNext }) => {
             e.preventDefault();
             onNext();
           }}
-          className="space-y-5"
         >
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -59,7 +58,7 @@ const SignupTab1 = ({ onNext }) => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 bg-[var(--base-200)] rounded-lg shadow-sm"
+              className="w-full px-4 py-2 bg-[var(--base-200)] rounded-lg shadow-sm mb-5"
               placeholder="輸入你的 Email"
               required
             />
@@ -73,14 +72,15 @@ const SignupTab1 = ({ onNext }) => {
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 bg-[var(--base-200)] rounded-lg shadow-sm"
+              className="w-full px-4 py-2 bg-[var(--base-200)] rounded-lg shadow-sm mb-8"
               placeholder="輸入你的密碼"
               required
             />
           </div>
-          <button
+          <div className="flex flex-col items-center justify-center">
+            <button
             type="submit"
-            className="w-full py-2 bg-[var(--accent)] hover:bg-[var(--warning)] text-white font-semibold rounded-lg shadow-md transition duration-200"
+            className="w-4/5 py-3 bg-[var(--accent)] hover:bg-[var(--warning)] text-white font-semibold rounded-lg shadow-md transition duration-200"
           >
             下一步
           </button>
@@ -88,10 +88,12 @@ const SignupTab1 = ({ onNext }) => {
           <button
             onClick={handleLogin}
             type="button"
-            className="w-full py-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200"
+            className="w-4/5 py-3 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200"
           >
             使用GOOGLE帳號直接註冊
           </button>
+          </div>
+          
         </form>
       </div>
     </motion.div>
