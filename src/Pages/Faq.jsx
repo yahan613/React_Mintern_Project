@@ -46,7 +46,7 @@ const Faq = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3DC9F] pt-20">
+    <div className="min-h-screen flex flex-col bg-[#F3DC9F] pt-10 sm:pt-20">
       {/* 添加媒體查詢樣式 */}
       <style>{responsiveStyles}</style>
 
@@ -54,17 +54,17 @@ const Faq = () => {
         {/* FAQ 內容區塊和標題的容器 */}
         <div className="max-w-[800px] mx-auto relative ">
           {/* 標題和搜索框並排顯示 */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between -mb-5 gap-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between sm:-mb-5 gap-4">
             {/* FAQ 大標題 */}
-            <div className="relative ml-16">
-              <h1 className="text-6xl sm:text-9xl font-black font-stretch-normal text-[#78624D]" style={{ fontFamily: "var(--font-passion-one)" }}>
+            <div className="relative sm:ml-16">
+              <h1 className="text-7xl sm:text-9xl font-black font-stretch-normal text-[#78624D]" style={{ fontFamily: "var(--font-passion-one)" }}>
                 FAQ
               </h1>
             </div>
             
             {/*搜尋欄*/}
-            <div className="z-20 md:w-[400px] mr-16">
-              <Command className="rounded-lg  shadow-md bg-[var(--secondary)]">
+            <div className="z-20 w-4/5 md:w-[400px] mb-5 sm:mb-0 sm:mr-16 self-center">
+              <Command className="rounded-lg shadow-md bg-[var(--secondary)]">
                 <div className="flex items-center px-3">
                   <Search className="mr-2 h-4 w-4 shrink-0 opacity-90 text-[var(--tertiary)]" />
                   <input
@@ -85,9 +85,10 @@ const Faq = () => {
               </Command>
             </div>
           </div>
+          
           {/* FAQ 內容區塊 */}
-          <div className="bg-[var(--primary)] rounded-2xl p-4 md:p-8 pt-12 md:pt-16">
-            <div className="space-y-6">
+          <div className="w-full bg-[var(--primary)] rounded-2xl md:p-8 pt-6 md:pt-16 pb-10">
+            <div className="">
               {filteredFaq.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-[var(--secondary)] font-medium">查無相關問題</p>
@@ -97,21 +98,16 @@ const Faq = () => {
                   <div
                     id={`faq-${faq.id}`}
                     key={faq.id}
-                    className="rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out bg-[var(--secondary)] w-full mx-auto faq-container"
-                    style={{
-                      maxWidth: '650px',
-                      width: '100%',
-                      margin: '0 auto'
-                    }}
+                    className="w-9/10 sm:w-4/5 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out bg-[var(--secondary)] w-full mx-auto faq-container"
                   >
                     <button
                       onClick={() => toggleFaq(faq.id)}
-                      className="w-full px-3 md:px-6 py-4 md:py-8 flex justify-between items-center transition-colors"
+                      className="w-full px-1 md:px-6 py-4 md:py-8 flex justify-between items-center transition-colors"
                     >
                       <h3 className="text-xl md:text-3xl font-semibold text-[#ECD086] text-left pl-2 md:pl-4">
                         Q{faq.id}
                       </h3>
-                      <h4 className="font-semibold text-white mb-3 text-sm md:text-base px-2">{faq.question}</h4>
+                      <h4 className="sm:font-semibold text-white my-2 sm:mb-3 text-sm md:text-base px-2">{faq.question}</h4>
                       <span className={`transform transition-transform duration-300 ${openId === faq.id ? 'rotate-90' : ''}`}>
                         <svg
                           width="24"
