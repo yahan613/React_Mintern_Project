@@ -27,9 +27,9 @@ const WatchIntro = () => {
     };
 
     return (
-        <div className="home-container flex flex-col lg:flex-row items-center justify-around w-screen h-auto bg-[var(--secondary)] pb-20 px-4 lg:px-4 flex-wrap gap-10">
+        <div className="home-container flex flex-col lg:flex-row items-center justify-around w-screen h-auto bg-[var(--secondary)] pb-20 px-4 lg:px-4 flex-wrap gap-10 pt-10">
             {/* 手錶圖片容器 */}
-            <div className="w-full lg:w-2/5 pt-4 mt-8  rounded-lg bg-[var(--base-100)] flex justify-center">
+            <div className="w-full lg:w-2/5 pt-4 mt-8 flex justify-center">
                 <div className="w-auto h-auto animate__fadeIn animate__animated">
                     <img
                         src="/Watch2.png"

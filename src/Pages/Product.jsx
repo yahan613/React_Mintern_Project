@@ -6,7 +6,7 @@ import Footer from "@/Component/Footer";
 const Product = () => {
     console.log("Product page loaded");
     return (
-        <div className="h-auto w-screen flex flex-col bg-var(--secondary) pt-20">
+        <div className="h-auto w-screen flex flex-col bg-var(--secondary) sm:pt-20">
             <WatchIntro/>
             <AppIntro/>
             <ShoppingList/>
