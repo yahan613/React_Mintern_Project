@@ -61,11 +61,11 @@ export default function MainIntro() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-around w-full sm:w-3/4 h-auto bg-[var(--secondary)] text-white p-16 rounded-lg mb-56 animate__fadeIn animate__animated">
+    <div className="flex flex-col lg:flex-row items-center justify-around w-full sm:w-3/4 h-auto bg-[var(--secondary)] text-white p-8 sm:p-12 sm:rounded-lg mb-56 animate__fadeIn animate__animated">
       {/* 左側文字區塊 */}
-      <div className="flex flex-col text-start p-4">
+      <div className="flex flex-col text-start p-4 order-2 lg:order-1">
         <h1
-          className="text-4xl sm:text-5xl lg:text-7xl font-bold pb-8 text-[#ECD086]"
+          className="text-center sm:text-left text-3xl sm:text-5xl lg:text-7xl font-bold pb-8 text-[#ECD086] break-normal whitespace-normal leading-relaxed"
           ref={titleRef}
           style={{ visibility: "hidden" }}
         >
@@ -74,7 +74,7 @@ export default function MainIntro() {
 
         {/* 中文逐字動畫區塊 */}
         <p
-          className="max-w-md text-md text-[var(--warning)] mb-4 lg-mb-0 leading-relaxed"
+          className="w-full text-center text-sm sm:text-base sm:text-left md:max-w-md text-[var(--warning)] mb-4 lg-mb-0 leading-relaxed break-normal "
           ref={chineseRef}
         >
           {chineseText.split("").map((char, idx) => (
@@ -87,7 +87,7 @@ export default function MainIntro() {
 
       {/* 右側圖片區塊 */}
       <div
-        className="w-2/3 lg:w-2/5 ml-4 p-16 shadow-[inset_0px_5px_20px_rgba(0,0,0,0.5)] rounded-lg bg-[var(--base-200)] flex items-center justify-center"
+        className="w-full lg:w-3/5 ml-4 p-10 sm:p-16 flex items-center justify-center order-1 lg:order-2"
         onClick={handleAnimation}
       >
         <img

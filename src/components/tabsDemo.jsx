@@ -55,52 +55,50 @@ export function TabsDemo() {
         >
             <Tabs
                 defaultValue="band"
-                className="w-[80vw] items-center mb-4 lg:mb-20 target-element"
+                className="w-full max-w-[1200px] items-center mb-4 lg:mb-20 target-element px-4 md:px-6 lg:px-8"
             >
-                <TabsList className="grid w-[100%] grid-cols-2 bg-[var(--secondary)] p-1 mb-4">
-                    <TabsTrigger value="band" className="data-[state=active]:bg-[var(--warning)] data-[state=active]:text-[var(--secondary)] text-[var(--tertiary)] font-bold border-none">
-                        BAND
+                <TabsList className="grid w-3/5 grid-cols-2 bg-[var(--secondary)] p-1 mb-2">
+                    <TabsTrigger value="band" className="data-[state=active]:bg-[var(--warning)] data-[state=active]:text-[var(--secondary)] text-[var(--tertiary)] font-semibold border-none">
+                        Band
                     </TabsTrigger>
-                    <TabsTrigger value="app" className="data-[state=active]:bg-[var(--warning)] data-[state=active]:text-[var(--secondary)] text-[var(--tertiary)] font-bold border-none">
-                        APP
+                    <TabsTrigger value="app" className="data-[state=active]:bg-[var(--warning)] data-[state=active]:text-[var(--secondary)] text-[var(--tertiary)] font-semibold border-none">
+                        App
                     </TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="band" className="w-[70%] mt-8">
-                    <div className="flex flex-col justify-between lg:flex-row pl-8 pr-8 gap-20">
+                <TabsContent value="band" className="w-full">
+                    <div className="flex flex-col justify-between lg:flex-row">
                         <div
-                            className="w-2/3 lg:w-full self-center ml-4 p-16 rounded-lg bg-[var(--base-200)] flex items-center justify-center"
+                            className="w-3/5 lg:w-full self-center py-8 md:p-12 lg:p-8 flex items-center justify-center"
                         >
                             <img
                                 src="/Watch.png"
                                 alt="Watch"
+                                className="w-full h-auto object-contain max-w-[300px]"
                             />
                         </div>
-                        <div className="flex flex-col text-start p-4">
-                            <h1 className="text-3xl pb-8 text-[var(--accent)]">Smart tracking, precise recording—every set counts!</h1>
-                            <p className="text-xl max-w-lg text-md text-[var(--secondary)]">
-                                Take your strength training to the next level with our smart band.
-                                Designed for weightlifters and fitness enthusiasts, this cutting-edge
-                                wearable accurately detects and records your reps using advanced motion
-                                sensors.
+                        <div className="flex flex-col p-4 sm:w-full text-center sm:justify-center">
+                            <h1 className="text-2xl font-semibold md:text-3xl pb-4 md:pb-8 text-[var(--accent)] text-center lg:text-left">Smart tracking, precise recording—every set counts!</h1>
+                            <p className="text-sm md:text-xl text-[var(--secondary)] break-normal whitespace-normal leading-relaxed lg:text-left">
+                                使用我們的智慧手環，讓重量訓練更上層樓。
+                                專為舉重與健身愛好者打造，透過先進的動作感測技術，準確偵測並記錄每一次訓練次數，幫助你更有效掌握運動成果。
                             </p>
                         </div>
                     </div>
                 </TabsContent>
 
-                <TabsContent value="app" className="w-[70%] mt-8 ">
-                    <div className="flex flex-col items-center justify-between lg:flex-row-reverse pl-8 pr-8 gap-20">
+                <TabsContent value="app" className="w-full mt-4">
+                    <div className="flex flex-col items-center justify-between lg:flex-row-reverse">
                         <img
                             src="/APPUI.png"
                             alt="App UI"
-                            className="lg:w-1/3 sm:w-2/3 h-[360px] object-contain "
+                            className="w-full lg:w-2/5 max-h-[300px] object-contain lg:pr-20"
                         />
-                        <div className="flex flex-col text-start p-4">
-                            <h1 className="text-3xl pb-8 text-[var(--accent)]">Grow Your Muscle Baby, Track Every Workout!</h1>
-                            <p className="text-xl max-w-lg text-md text-[var(--secondary)]">
-                                Track your workouts and watch your muscle baby grow with every rep.
-                                Get personalized workout plans and AI-driven insights to boost your
-                                progress and achieve your fitness goals.
+                        <div className="flex flex-col p-4 w-full lg:w-3/5 sm:justify-center">
+                            <h1 className="text-2xl font-semibold md:text-3xl pb-4 md:pb-8 text-[var(--accent)] text-center lg:text-right">Grow Your Muscle Baby, Track Every Workout!</h1>
+                            <p className="text-sm md:text-xl text-[var(--secondary)] break-normal whitespace-normal leading-relaxed text-center lg:text-right">
+                            追蹤你的每一次訓練，看著你的「肌胸肉寶寶」隨著每下動作成長。
+                            搭配專屬的訓練計畫與 AI 智能分析，全面提升訓練成效，助你達成理想體態!
                             </p>
                         </div>
                     </div>
