@@ -7,14 +7,21 @@ import { getFirestore, doc, setDoc, getDoc, addDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import Lottie from "lottie-react";
 import loading from "../../json/lottie/Loading.json"; // 你的 Lottie JSON 動畫
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { uploadAvatar } from "../../firebase/storage"; 
 
 
 const SignupTabPhoto = ({ onNext }) => {
-    const [formData, setFormData] = useState({ firstName: '', lastName: '' });
-    const login = useSelector((state) => state.login);
     const dispatch = useDispatch();
-
     const [step, setStep] = useState(1);
+    const [formData, setFormData] = useState({ file: null }); // ← 加這行
+
+    const user = useSelector(
+        (state) => state.login);
+
+    const uploadPhotoAndSaveURL = async () => {
+        await uploadAvatar(user.userMail, formData.file);
+    };
     const finLoading = () => {
         setStep(step + 1); // 切換到下一個 Tab
     };
@@ -43,17 +50,18 @@ const SignupTabPhoto = ({ onNext }) => {
                         <div>
                             <div className="text-sm font-medium text-gray-700 mb-1">上傳你的雞胸肉寶寶照片作為大頭貼吧~</div>
                             <label className="w-full flex items-center justify-center py-2 px-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200 cursor-pointer text-center">
-                              <span className="w-full text-center">
-                                {(formData.file && formData.file.name)}
-                              </span>
-                              <input
-                                type="file"
-                                accept=".png"
-                                onChange={(e) => {
-                                  const file = e.target.files[0];
-                                }}
-                                
-                              />
+                                <span className="w-full text-center">
+                                    {(formData.file && formData.file.name)}
+                                </span>
+                                <input
+                                    type="file"
+                                    accept=".png"
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+                                        setFormData({ file }); // ← 這裡更新
+                                    }}
+
+                                />
                             </label>
                             <div className="text-center mt-4">or</div>
                             <button
@@ -69,7 +77,10 @@ const SignupTabPhoto = ({ onNext }) => {
                         </div>
                         <button
                             type="submit"
-                            onClick={finLoading}
+                            onClick={async () => {
+                                await uploadPhotoAndSaveURL(); // ← 先上傳圖片與存 URL
+                                finLoading();
+                            }}
                             className="w-full py-2 bg-[var(--accent)] hover:bg-[var(--warning)] text-white font-semibold rounded-lg shadow-md transition duration-200 mt-4"
                         >
                             下一步
