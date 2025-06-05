@@ -13,7 +13,7 @@ export default function ShoppingList() {
                 "Train Smart. Live Strong. Choose Yours."
             </h2>
             <div className="w-full mx-auto text-center text-base md:text-xl flex gap-10 items-center justify-center">
-                <div className="flex flex-col lg:flex-row justify-between sm:w-4/5">
+                <div className="flex flex-col lg:flex-row justify-between sm:w-4/5 items-center">
                     {data.map((item) => (
                         <div
                             key={item.id}

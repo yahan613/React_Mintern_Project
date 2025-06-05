@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux'
 import { logout } from '@/redux/loginSlice'
 import { Storage } from '@/firebase/storage'
 import { getStorage, ref, getDownloadURL } from "firebase/storage"
+import { fetchAvatarUrl } from '@/api/avator'
+import { useQuery } from '@tanstack/react-query'
 
 const db = getFirestore(app)
 
@@ -18,7 +20,6 @@ export default function Success() {
     const [orders, setOrders] = useState([])
     const [selectedOrder, setSelectedOrder] = useState(null)
     const dispatch = useDispatch();
-    const [avatarUrl, setAvatarUrl] = useState('/default-avatar.png');
 
     // 根據商品名稱獲取圖片URL
     const getProductImage = (productName) => {
@@ -49,21 +50,24 @@ export default function Success() {
     }, [userInfo.userId])
 
     //Avator 
-    useEffect(() => {
+    /*useEffect(() => {
         if (userInfo.userMail) {
             // 只取 @ 前面部分作為檔名，避免錯誤
             const safeEmail = userInfo.userMail.split('@')[0];
             const imgRef = ref(Storage, `avatars/${safeEmail}.png`);
-
-            console.log("Avatar reference:", imgRef);
-            console.log("Fetching avatar for user:", `${safeEmail}.png`);
             getDownloadURL(imgRef)
                 .then((url) => {
                     console.log("圖片網址：", url);
                     setAvatarUrl(url);
                 });
         }
-    }, [userInfo.userMail])
+    }, [userInfo.userMail])*/
+
+    const { data: avatarUrl = '/default-avatar.png', isLoading } = useQuery({
+        queryKey: ['avatar', userInfo.userMail],
+        queryFn: () => fetchAvatarUrl(userInfo.userMail),
+        enabled: !!userInfo.userMail,
+    });
 
 
     const handleOrderClick = async (orderId) => {

@@ -14,9 +14,9 @@ const SignupTab3 = () => {
         src="./img/ChickenBaby.png"
         alt="success"
       />
-      <div className="w-9/10 sm:w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-center mb-10">
-        <h1 className="text-2xl sm:text-4xl font-bold mb-6 text-[var(--secondary)]">
-          Congraduation~
+      <div className="w-9/10 sm:w-[50vw] max-w-md rounded-2xl shadow-xl p-12 text-center mb-10 self-center bg-white flex flex-col items-center justify-center">
+        <h1 className="text-2xl sm:text-4xl font-bold mb-6 text-[var(--secondary)] text-center">
+          Congraduations~
         </h1>
         <div className="text-lg text-gray-700 mb-4">
           歡迎加入我們的社群<br></br>

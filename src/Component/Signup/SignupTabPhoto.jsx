@@ -49,13 +49,13 @@ const SignupTabPhoto = ({ onNext }) => {
 
                         <div>
                             <div className="text-sm font-medium text-gray-700 mb-1 text-center sm:text-left">上傳你的肌胸肉寶寶照片作為大頭貼吧~</div>
-                            <label className="w-full flex items-center justify-center py-2 px-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200 cursor-pointer text-center">
-                                <span className="w-full text-center">
-                                    {(formData.file && formData.file.name)}
+                            <label className="w-full flex items-center justify-center py-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200 cursor-pointer text-center">
+                                <span className="w-full text-center m-2">
                                 </span>
                                 <input
+                                    className="text-sm overflow-hidden"
                                     type="file"
-                                    accept=".png"
+                                    accept=".png ,.jpg,.jpeg"
                                     onChange={(e) => {
                                         const file = e.target.files[0];
                                         setFormData({ file }); // ← 這裡更新
@@ -63,17 +63,6 @@ const SignupTabPhoto = ({ onNext }) => {
 
                                 />
                             </label>
-                            <div className="text-center mt-4">or</div>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    // 這裡可以添加上傳圖片的邏輯
-                                    console.log("Upload photo clicked");
-                                }}
-                                className="w-full py-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200 mb-4"
-                            >
-                                使用預設照片
-                            </button>
                         </div>
                         <button
                             type="submit"

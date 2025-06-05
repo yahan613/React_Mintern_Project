@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import store, { persistor } from './redux/store';
 import { frame, motion, useSpring } from "motion/react"
 import { RefObject, useEffect, useRef } from "react"
@@ -18,6 +19,8 @@ import Signup from "./Pages/Signup";
 
 import 'animate.css';
 console.log('Redux 初始狀態:', store.getState());
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <Provider store={store}>
@@ -28,23 +31,25 @@ function App() {
           console.log(store.getState());
         }}
       >
-        <Router>
-          <div
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
-            className="w-screen h-screen m-0 p-0 mt-0 flex flex-col justify-start overflow-x-hidden">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/product" element={<Product />} />
-              <Route path="/faq" element={<Faq />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/member" element={<MemberCenter />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </Routes>
-          </div>
-        </Router>
+        <QueryClientProvider client={queryClient}>
+          <Router>
+            <div
+              style={{ fontFamily: 'Montserrat, sans-serif' }}
+              className="w-screen h-screen m-0 p-0 mt-0 flex flex-col justify-start overflow-x-hidden">
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/product" element={<Product />} />
+                <Route path="/faq" element={<Faq />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/member" element={<MemberCenter />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+              </Routes>
+            </div>
+          </Router>
+        </QueryClientProvider>
       </PersistGate>
     </Provider>
   );
