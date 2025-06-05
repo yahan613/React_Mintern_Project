@@ -5,6 +5,10 @@ import { X } from 'lucide-react'
 import { getFirestore, collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore'
 import { app } from "@/firebase/config";
 import shopList from '@/json/Shoplist.json';
+import { useDispatch } from 'react-redux'
+import { logout } from '@/redux/loginSlice'
+import { Storage } from '@/firebase/storage'
+import { getStorage, ref, getDownloadURL } from "firebase/storage"
 
 const db = getFirestore(app)
 
@@ -13,6 +17,8 @@ export default function Success() {
     const [showOrderDetails, setShowOrderDetails] = useState(false)
     const [orders, setOrders] = useState([])
     const [selectedOrder, setSelectedOrder] = useState(null)
+    const dispatch = useDispatch();
+    const [avatarUrl, setAvatarUrl] = useState('/default-avatar.png');
 
     // 根據商品名稱獲取圖片URL
     const getProductImage = (productName) => {
@@ -41,6 +47,24 @@ export default function Success() {
         }
         fetchOrders()
     }, [userInfo.userId])
+
+    //Avator 
+    useEffect(() => {
+        if (userInfo.userMail) {
+            // 只取 @ 前面部分作為檔名，避免錯誤
+            const safeEmail = userInfo.userMail.split('@')[0];
+            const imgRef = ref(Storage, `avatars/${safeEmail}.png`);
+
+            console.log("Avatar reference:", imgRef);
+            console.log("Fetching avatar for user:", `${safeEmail}.png`);
+            getDownloadURL(imgRef)
+                .then((url) => {
+                    console.log("圖片網址：", url);
+                    setAvatarUrl(url);
+                });
+        }
+    }, [userInfo.userMail])
+
 
     const handleOrderClick = async (orderId) => {
         try {
@@ -72,11 +96,26 @@ export default function Success() {
         });
     }
 
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
+
     return (
         <div className='w-full h-full flex flex-col justify-center items-center'>
-            <div className="h-9/10 w-full flex flex-row justify-center items-start m-10 rounded-2xl px-10 gap-10">
-                {/* 左側內容：會員資料區塊和訂單列表 */}
-                <div className={`h-full w-full lg:w-2/5 flex justify-center m-5 rounded-2xl px-10 py-5 bg-[var(--base-100)] transition-all duration-500 ${showOrderDetails ? '' : 'lg:mx-auto'}`}>
+            <div className="h-9/10 w-2/3 flex md:flex-row sm:flex-coljustify-center items-start m-10 rounded-2xl px-10 gap-10 bg-[var(--base-100)]">
+                {/* 上側內容：會員資料區塊和訂單列表 */}
+                <img
+                    src={avatarUrl}
+                    alt="User Avatar"
+                    className="w-1/3 rounded-full border-2 border-[var(--secondary)] object-cover mb-4 self-center"
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/default-avatar.png';
+                    }}
+                />
+
+                <div className={`h-full w-full lg:w-2/5 flex justify-center m-5 rounded-2xl px-10 py-5 transition-all duration-500 ${showOrderDetails ? '' : 'lg:mx-auto'}`}>
                     <div className="w-full text-center flex items-center flex-col text-[var(--secondary)]">
                         <div className="text-base lg:text-2xl font-bold my-5">歡迎，{userInfo.userName}</div>
 
@@ -122,9 +161,9 @@ export default function Success() {
                     </div>
                 </div>
 
-                {/* 右側內容：訂單詳細資料 */}
+                {/* 下側內容：訂單詳細資料 */}
                 {showOrderDetails && selectedOrder && (
-                    <div className="w-full lg:w-1/3 p-5 rounded-2xl bg-[var(--darker-tertiary)] text-[var(--secondary)] text-xl font-regular flex flex-col transition-all duration-1000 overflow-hidden animate-slide-down self-center">
+                    <div className="w-full lg:w-1/3 p-5 rounded-2xl bg-[var(--darker-tertiary)] text-[var(--secondary)] text-xl font-regular flex flex-col transition-all duration-1000 overflow-hidden animate-slide-down self-center ">
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="text-2xl font-semibold">Order details</h3>
                             <button onClick={handleCloseDetails} className="p-1 rounded-full hover:bg-[var(--tertiary)] transition-colors">
@@ -182,14 +221,14 @@ export default function Success() {
                                 </div>
                             )}
                         </div>
+
                     </div>
                 )}
             </div>
             <div className='flex justify-center items-center mt-10 mb-10'>
-                <Link to="/login" className=" flex justify-center items-center px-10 py-3 bg-[var(--accent)] text-white text-xl font-bold rounded hover:bg-[var(--base-200)] hover:text-[var(--accent)] transition-colors duration-200">
+                <Link to="/login" onClick={handleLogout} className=" flex justify-center items-center px-10 py-3 bg-[var(--accent)] text-white text-xl font-bold rounded hover:bg-[var(--base-200)] hover:text-[var(--accent)] transition-colors duration-200">
                     登出
                 </Link>
-                
             </div>
         </div>
     )

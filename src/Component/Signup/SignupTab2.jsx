@@ -25,11 +25,10 @@ const SignupTab2 = ({ onNext }) => {
                 userChickenBaby: formData.lastName,
             })
         );
-        console.log("formData", login.userId)
         setDoc(doc(db, "users", login.userId), {
             userName: formData.firstName,
             userChickenBaby: formData.lastName,
-        });
+        }, { merge: true });
     }
 
 

@@ -26,8 +26,9 @@ const loginSlice = createSlice({
             state.isLoggedIn = false;
             state.userName = null;
             state.userMail = null;
+            state.userId = null;
+            state.userChickenBaby = null;
         },
-        // redux/loginSlice.js
         setData: (state, action) => {
             state.userName = action.payload.userName;
             state.userChickenBaby = action.payload.userChickenBaby;
