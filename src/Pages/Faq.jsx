@@ -46,7 +46,7 @@ const Faq = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3DC9F]">
+    <div className="min-h-screen flex flex-col bg-[#F3DC9F] pt-20">
       {/* 添加媒體查詢樣式 */}
       <style>{responsiveStyles}</style>
 

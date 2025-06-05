@@ -103,36 +103,38 @@ export default function Success() {
 
     return (
         <div className='w-full h-full flex flex-col justify-center items-center'>
-            <div className="h-9/10 w-2/3 flex md:flex-row sm:flex-coljustify-center items-start m-10 rounded-2xl px-10 gap-10 bg-[var(--base-100)]">
+            <div className="h-9/10 w-9/10 sm:w-2/3 flex flex-col lg:flex-row justify-center items-start m-10 rounded-2xl gap-8">
                 {/* 上側內容：會員資料區塊和訂單列表 */}
-                <img
-                    src={avatarUrl}
-                    alt="User Avatar"
-                    className="w-1/3 rounded-full border-2 border-[var(--secondary)] object-cover mb-4 self-center"
-                    onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = '/default-avatar.png';
-                    }}
-                />
-
-                <div className={`h-full w-full lg:w-2/5 flex justify-center m-5 rounded-2xl px-10 py-5 transition-all duration-500 ${showOrderDetails ? '' : 'lg:mx-auto'}`}>
+                <div className={`h-auto sm:h-full w-full lg:w-3/5 flex justify-center rounded-2xl px-10 py-5 transition-all duration-500 bg-[var(--base-100)] ${showOrderDetails ? '' : 'lg:mx-auto'}`}>
                     <div className="w-full text-center flex items-center flex-col text-[var(--secondary)]">
-                        <div className="text-base lg:text-2xl font-bold my-5">歡迎，{userInfo.userName}</div>
+                        <div className='w-full flex flex-row justify-center items-center'>
+                            <img
+                                src={avatarUrl}
+                                alt="User Avatar"
+                                className="w-3/10 lg:ml-10 rounded-full border-2 border-[var(--secondary)] object-cover mb-4 self-center"
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = '/default-avatar.png';
+                                }}
+                            />
+                            <div className="w-7/10 text-base lg:text-2xl font-bold my-5">歡迎，{userInfo.userName}</div>
+                        </div>
 
-                        <div className="flex flex-row w-full justify-between p-3 mb-6 border-2 rounded-2xl border-[var(--darker-tertiary)] gap-15">
-                            <div className="text-sm lg:text-xl">E-mail</div>
+
+                        <div className="flex flex-col sm:flex-row w-full justify-between p-3 mb-6 border-2 rounded-2xl border-[var(--darker-tertiary)] gap-15 text-start ">
+                            <div className="text-sm lg:text-xl font-semibold">E-mail</div>
                             <div className="text-sm lg:text-xl">{userInfo.userMail}</div>
                         </div>
 
                         <div className="flex flex-row w-full justify-between p-3 mb-6 border-2 rounded-2xl border-[var(--darker-tertiary)] gap-10">
-                            <div className="text-sm lg:text-xl">ChickenBaby</div>
+                            <div className="text-sm lg:text-xl font-semibold">ChickenBaby</div>
                             <div className="text-sm lg:text-xl">{userInfo.userChickenBaby}</div>
                         </div>
 
                         <div className='w-full'>
-                            <div className='text-2xl flex pl-3'>My orders</div>
+                            <div className='text-xl sm:text-2xl flex pl-3 font-semibold'>My orders</div>
                             <div className="w-full h-[1px] bg-[var(--secondary)] my-4"></div>
-                            <div className='w-full flex flex-row justify-between px-5 text-sm lg:text-base font-semibold text-[var(--secondary)]'>
+                            <div className='w-full flex flex-row justify-between px-3 sm:px-5 text-sm text-start lg:text-base font-semibold text-[var(--secondary)]'>
                                 <p>Order Number</p>
                                 <p className="mr-10">Order Date</p>
                                 <p>Status</p>
@@ -146,11 +148,11 @@ export default function Success() {
                                 orders.map((order) => (
                                     <div
                                         key={order.id}
-                                        className="w-full flex flex-row justify-between px-5 py-3 mt-2 bg-[var(--tertiary)] rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                                        className="w-full flex flex-row justify-between px-3 sm:px-5 py-3 mt-2 bg-[var(--tertiary)] rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
                                         onClick={() => handleOrderClick(order.id)}
                                     >
                                         <p className="text-sm lg:text-base text-[var(--secondary)]">{order.orderNumber}</p>
-                                        <p className="text-sm lg:text-base text-[var(--secondary)] ml-10">
+                                        <p className="text-sm lg:text-base text-[var(--secondary)] sm:ml-10 ">
                                             {formatDate(order.orderDate)}
                                         </p>
                                         <p className="text-sm lg:text-base text-[var(--secondary)]">{order.status}</p>
@@ -163,40 +165,41 @@ export default function Success() {
 
                 {/* 下側內容：訂單詳細資料 */}
                 {showOrderDetails && selectedOrder && (
-                    <div className="w-full lg:w-1/3 p-5 rounded-2xl bg-[var(--darker-tertiary)] text-[var(--secondary)] text-xl font-regular flex flex-col transition-all duration-1000 overflow-hidden animate-slide-down self-center ">
+                    <div className="w-full lg:w-2/5 p-5 rounded-2xl bg-[var(--darker-tertiary)] text-[var(--secondary)] text-xl flex flex-col transition-all duration-1000 overflow-hidden animate-slide-down self-center ">
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-2xl font-semibold">Order details</h3>
+                            <h3 className="sm:text-2xl font-semibold">Order details</h3>
                             <button onClick={handleCloseDetails} className="p-1 rounded-full hover:bg-[var(--tertiary)] transition-colors">
                                 <X size={24} />
                             </button>
                         </div>
                         <div className='flex flex-col gap-3'>
                             <div className="flex flex-row justify-between">
-                                <p>Order Number</p>
+                                <p className="font-semibold" >Order Number</p>
                                 <p>{selectedOrder.orderNumber}</p>
                             </div>
-                            <div className="flex flex-row justify-between">
-                                <p>Order Date</p>
-                                <p>{formatDate(selectedOrder.orderDate)}</p>
+                            <div className="flex flex-row justify-between items-center">
+                                <p className="font-semibold">Order Date</p>
+                                <p className='text-base sm:text-xl'>{formatDate(selectedOrder.orderDate)}</p>
                             </div>
                             <div className="flex flex-row justify-between">
-                                <p>Status</p>
+                                <p className="font-semibold">Status</p>
                                 <p>{selectedOrder.status}</p>
                             </div>
                             <div className="flex flex-row justify-between">
-                                <p>Total</p>
+                                <p className="font-semibold">Total</p>
                                 <p>NT$ {selectedOrder.total?.toLocaleString()}</p>
                             </div>
                             <div className="flex flex-row justify-between">
-                                <p>Shipping Address</p>
+                                <p className="font-semibold">Shipping Address</p>
                                 <p className="text-right max-w-[200px]">{selectedOrder.address}</p>
                             </div>
                             <div className="flex flex-row justify-between">
-                                <p>Payment Method</p>
+                                <p className="font-semibold">Payment Method</p>
                                 <p>{selectedOrder.paymentMethod === 'credit_card' ? 'Credit Card' : 'Cash on Delivery'}</p>
                             </div>
+                            <div className="w-full h-px bg-[var(--secondary)] my-2"></div>
                             {selectedOrder.items && (
-                                <div className="mt-4 w-full flex flex-col items-start">
+                                <div className="w-full flex flex-col items-start">
                                     <h4 className="text-lg font-semibold mb-2 self-start">Order Items</h4>
                                     <div className="flex flex-wrap gap-4">
                                         {selectedOrder.items.map((item, index) => {

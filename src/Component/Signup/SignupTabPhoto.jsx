@@ -33,22 +33,22 @@ const SignupTabPhoto = ({ onNext }) => {
     }, [step, onNext]);
     return (
         <motion.div
-            className="w-auto h-auto flex flex-col items-center justify-center pt-10"
+            className="w-auto h-auto flex flex-col items-center justify-center"
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.4 }}
         >
             {step === 1 && (
-                <div className="w-auto h-auto flex flex-col items-center justify-center pt-10">
-                    <img className="p-0 w-[90px] mb-[-5px] self-start" src="./img/ChickenBaby.png" alt="login" />
-                    <div className="w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-start mb-10">
-                        <h1 className="text-4xl font-bold mb-6 text-center text-[var(--secondary)]">
-                            Please Choose a Photo
+                <div className="w-9/10 sm:w-auto h-auto flex flex-col items-center justify-center">
+                    <img className="p-0 w-[90px] mb-[-5px] self-start ml-10 sm:ml-5" src="./img/ChickenBaby.png" alt="login" />
+                    <div className="w-9/10 sm:w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-start mb-10">
+                        <h1 className="text-4xl font-bold mb-6 text-center text-[var(--secondary)] break-normal">
+                            Please choose a photo
                         </h1>
 
                         <div>
-                            <div className="text-sm font-medium text-gray-700 mb-1">上傳你的雞胸肉寶寶照片作為大頭貼吧~</div>
+                            <div className="text-sm font-medium text-gray-700 mb-1 text-center sm:text-left">上傳你的肌胸肉寶寶照片作為大頭貼吧~</div>
                             <label className="w-full flex items-center justify-center py-2 px-2 mt-2 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition duration-200 cursor-pointer text-center">
                                 <span className="w-full text-center">
                                     {(formData.file && formData.file.name)}
@@ -89,7 +89,7 @@ const SignupTabPhoto = ({ onNext }) => {
                 </div>
             )}
             {step === 2 && (
-                <div className="w-auto h-auto flex flex-col items-center justify-center pt-10">
+                <div className="w-auto h-auto flex flex-col items-center justify-center">
                     <Lottie animationData={loading} loop={true} className="w-[400px] h-[400px]" />
                     <h1 className="text-2xl font-bold text-center text-[var(--secondary)]">
                         即將完成註冊...

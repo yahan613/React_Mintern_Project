@@ -31,18 +31,18 @@ const SignupTab1 = ({ onNext }) => {
 
   return (
     <motion.div
-      className="w-auto h-auto flex flex-col items-center justify-center pt-10"
+      className="w-auto h-auto flex flex-col items-center justify-center"
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.4 }}
     >
       <img
-        className="p-0 w-[90px] mb-[-5px] self-start"
+        className="p-0 w-[90px] mb-[-5px] self-start ml-10"
         src="./img/ChickenBaby.png"
         alt="login"
       />
-      <div className="w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-start mb-10">
+      <div className="w-9/10 sm:w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-start mb-10">
         <h1 className="text-4xl font-bold mb-6 text-center text-[var(--secondary)]">
           Set up your account
         </h1>

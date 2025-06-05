@@ -61,7 +61,7 @@ export default function MainIntro() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-around w-full sm:w-3/4 h-auto bg-[var(--secondary)] text-white p-8 sm:p-12 sm:rounded-lg mb-56 animate__fadeIn animate__animated">
+    <div className="flex flex-col lg:flex-row items-center justify-around w-full sm:w-3/4 h-auto bg-[var(--secondary)] text-white p-8 sm:p-12 sm:rounded-lg mb-56 animate__fadeIn animate__animated sm:mt-20">
       {/* 左側文字區塊 */}
       <div className="flex flex-col text-start p-4 order-2 lg:order-1">
         <h1

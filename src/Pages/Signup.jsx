@@ -12,7 +12,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-[var(--darker-tertiary)] w-screen h-screen flex flex-col items-center justify-center">
+    <div className="bg-[var(--darker-tertiary)] w-screen h-screen flex flex-col items-center justify-center pt-20">
       {step === 1 && <SignupTab1 onNext={handleNext} />}
       {step === 2 && <SignupTab2 onNext={handleNext}/>}
       {step === 3 && <SignupTabPhoto onNext={handleNext}/>}

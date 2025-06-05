@@ -34,15 +34,15 @@ const SignupTab2 = ({ onNext }) => {
 
     return (
         <motion.div
-            className="w-auto h-auto flex flex-col items-center justify-center pt-10"
+            className="w-9/10 sm:w-auto h-auto flex flex-col items-center justify-center"
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.4 }}
         >
-            <div className="w-auto h-auto flex flex-col items-center justify-center pt-10">
+            <div className="w-9/10 sm:w-auto h-auto flex flex-col items-center justify-center pt-10">
                 <img className="p-0 w-[90px] mb-[-5px] self-start" src="./img/ChickenBaby.png" alt="login" />
-                <div className="w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-start mb-10">
+                <div className="w-full sm:w-[50vw] max-w-md bg-white rounded-2xl shadow-xl p-8 text-start mb-10">
                     <h1 className="text-4xl font-bold mb-6 text-center text-[var(--secondary)]">
                         Hi there!
                     </h1>
@@ -63,7 +63,7 @@ const SignupTab2 = ({ onNext }) => {
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                                雞胸肉寶寶的名字
+                                肌胸肉寶寶的名字
                             </label>
                             <input
                                 type="text"
@@ -71,7 +71,7 @@ const SignupTab2 = ({ onNext }) => {
                                 value={formData.lastName}
                                 onChange={handleInputChange}
                                 className="w-full px-4 py-2 bg-[var(--base-200)] rounded-lg shadow-sm"
-                                placeholder="雞胸肉寶寶的名字較做什麼呢?"
+                                placeholder="肌胸肉寶寶的名字叫做什麼呢?"
                                 required
                             />
                         </div>

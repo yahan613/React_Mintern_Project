@@ -43,11 +43,11 @@ const LoginTab = () => {
   };
 
   return (
-    <div className="w-auto h-auto flex flex-col items-center justify-center pt-10 mb-10">
+    <div className="w-9/10 sm:w-auto h-screen flex flex-col items-center justify-center mb-10">
       <img className="p-0 w-[90px] self-end" src="./img/Chickenteenager.png" alt="login" />
-      <div className="w-full bg-white p-20 rounded-2xl shadow-xl p-8 bg-[var(--tertiary)] shadow-md text-start mb-10">
+      <div className="w-full bg-white sm:p-20 rounded-2xl shadow-xl p-8 bg-[var(--tertiary)] shadow-md text-start mb-10">
         <h1 className="text-4xl font-bold mb-6 text-center text-[var(--secondary)]">
-          Welcome Back
+          Welcome back!
         </h1>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>

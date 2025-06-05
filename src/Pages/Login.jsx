@@ -16,7 +16,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-[var(--darker-tertiary)] w-screen h-auto flex flex-col items-center justify-center">
+    <div className="bg-[var(--darker-tertiary)] w-screen h-auto flex flex-col items-center justify-center pt-10">
       <LoginTab />
     </div>
   );
