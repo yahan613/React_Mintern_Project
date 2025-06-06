@@ -40,7 +40,7 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
           count: newCount
         });
       }
-
+      console.log('New order number generated:', newCount);
       // 將數字轉換為三位數的字符串，不足補零
       return newCount.toString().padStart(3, '0');
     } catch (error) {
@@ -94,11 +94,12 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
 
       console.log('Order data to be saved:', orderData);
 
+
       // 保存訂單到 Firebase
       try {
         const ordersRef = collection(db, 'orders');
         console.log('Orders collection reference created');
-        
+
         const orderRef = await addDoc(ordersRef, orderData);
         console.log('Order saved successfully with ID:', orderRef.id);
 
@@ -131,12 +132,38 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
     } finally {
       setIsLoading(false);
     }
+
+    console.log("以下為熱門商品的訂單號:");
+    console.log("商品數據:",  selectedItems);
+    // 假設你有一個熱門商品的集合
+
+    // 在成功保存訂單後，將每個商品添加到熱門商品集合中
+    try {
+      for (const item of selectedItems) {
+        const itemRef = doc(db, 'popularProduct', String(item.id-1)); // 以商品 id 當作 document id
+        const itemDoc = await getDoc(itemRef);
+
+        if (itemDoc.exists()) {
+          await updateDoc(itemRef, {
+            popularity: increment(item.quantity)
+          });
+        } else {
+          await setDoc(itemRef, {
+            popularity: item.quantity
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error updating popular items:', error);
+    }
+
+
   };
 
   return (
     <div className="w-full lg:w-2/5 bg-[var(--primary)] p-6 rounded-lg shadow-md h-fit">
       <h2 className="text-2xl font-semibold mb-8 text-[var(--secondary)]">Order Summary</h2>
-      
+
       {selectedItems.length === 0 ? (
         <div className="text-center py-4 text-[var(--secondary)]">
           <p>No items selected</p>
@@ -155,19 +182,19 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
               </div>
             ))}
           </div>
-          
+
           {/* 分隔線 */}
           <div className="w-full h-[1px] bg-gray-100 my-4"></div>
-          
+
           {/* 運費 */}
           <div className="flex flex-col gap-2">
             <div className="flex justify-between text-[var(--secondary)] cursor-pointer" onClick={() => setIsAddressOpen(!isAddressOpen)}>
               <span className="flex items-center gap-2 font-medium">
                 Shipping
-                <svg 
-                  className={`w-4 h-4 transition-transform ${isAddressOpen ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className={`w-4 h-4 transition-transform ${isAddressOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -175,7 +202,7 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
               </span>
               <span>NT$ {shippingFee}</span>
             </div>
-            
+
             {isAddressOpen && (
               <div className="mt-2 p-4 bg-gray-100 rounded-lg">
                 <label className="block text-sm font-regular text-[var(--secondary)] mb-2 text-left">
@@ -192,7 +219,7 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
               </div>
             )}
           </div>
-          
+
           {/* 支付方式 */}
           <div className="flex flex-col gap-2">
             <div className="flex justify-between items-center text-[var(--secondary)]">
@@ -207,7 +234,7 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
               </select>
             </div>
           </div>
-          
+
           {/* 總金額 */}
           <div className="relative mt-4">
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gray-100"></div>
@@ -218,7 +245,7 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
               </div>
             </div>
           </div>
-          
+
           {/* 結帳按鈕 */}
           <button
             className="w-full bg-[var(--darker-tertiary)] text-[var(--secondary)] py-3 rounded-lg mt-4 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
@@ -236,17 +263,17 @@ const OrderSummary = ({ selectedItems, onCheckout }) => {
           <div className="fixed inset-0 bg-black bg-opacity-50"></div>
           <div className="relative bg-[var(--tertiary)] p-8 rounded-lg shadow-xl animate-fade-in">
             <div className="text-center">
-              <svg 
-                className="w-16 h-16 mx-auto mb-4 text-[var(--secondary)]" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-16 h-16 mx-auto mb-4 text-[var(--secondary)]"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M5 13l4 4L19 7" 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
                 />
               </svg>
               <h3 className="text-2xl font-semibold text-[var(--secondary)] mb-3">Order Successful!</h3>
@@ -264,4 +291,4 @@ const calculateTotal = (items) => {
   return items.reduce((total, item) => total + item.subtotal, 0);
 };
 
-export default OrderSummary; 
+export default OrderSummary;
