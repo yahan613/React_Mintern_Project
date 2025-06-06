@@ -22,12 +22,12 @@ const SignupTab3 = () => {
           歡迎加入我們的社群<br></br>
           一起養大你的肌胸肉寶寶吧！
         </div>
-        <a
-          href="/login"
+        <Link
+          to="/login"
           className="inline-block px-6 py-2 bg-[var(--accent)] hover:bg-[var(--warning)] text-white font-semibold rounded-lg shadow-md transition duration-200"
         >
           go to login
-        </a>
+        </Link>
       </div>
     </motion.div>
   );
